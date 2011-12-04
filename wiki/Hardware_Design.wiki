@@ -1,0 +1,9 @@
+=THIẾT KẾ SCHEMATIC VỚI STM32=
+
+Phần này trình bày các nguyên tắc cơ bản cho cho việc thiết kế schematic sử dụng MCU STM32.
+
+Board cơ bản cho package QFP64:
+
+[http://stm32vn.googlecode.com/svn/trunk/image/STM32_SCH_BASIC.PNG]
+
+
