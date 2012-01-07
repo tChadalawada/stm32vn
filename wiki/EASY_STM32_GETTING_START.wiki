@@ -41,12 +41,21 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
 
 [http://ujtag.googlecode.com/svn/trunk/ujtag_files/CDM20802%20WHQL%20Certified.zip CDM20802 WHQL Certified.zip]
 
-==Chương trình nạp standalone==
+==Chương trình nạp standalone CoFlash==
   
-  Có thể sử dụng chương trình nạp standalone CoFlash, đây là chương trình miễn phí được hỗ trợ bởi trang [http://www.coocox.org], ta có thể download theo link sau:
+  Có thể sử dụng chương trình nạp standalone CoFlash, đây là chương trình miễn phí được hỗ trợ bởi trang [http://www.coocox.org], ta có thể download [http://ujtag.googlecode.com/svn/trunk/ujtag_files/CoFlash-1.3.6.exe CoFlash-1.3.6] và cài đặt vào máy tính.
 
-[http://ujtag.googlecode.com/svn/trunk/ujtag_files/CoFlash-1.3.6.exe CoFlash-1.3.6]
+  Các hình minh họa sau chỉ ra cách sử dụng CoFlash để nạp firmware (file.bin) vào ARM CM3. Trước tiên ta chọn loại cable và MCU cho phù hợp, rồi sau đó thực hiện lập trình flash ở tab Command (xem hình):
 
+[http://ujtag.googlecode.com/svn/trunk/Image/CooFlash_Config_2.PNG]
+Cấu hình CooFlash
+
+[http://ujtag.googlecode.com/svn/trunk/Image/CooFlash_Prog.PNG]
+Các thao tác lập trình Flash cho chíp STM32F103RC
+
+
+
+ 
 
 
  
