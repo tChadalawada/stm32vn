@@ -85,6 +85,9 @@ Ta có thể thay đổi thông số Jtag clk bằng cách ấn vào nút Settin
 
 [http://www.arm.vn/Portals/0/CongCu/UJTAG/UJTAG12.JPG]
 
+Sau khi hoàn tất các bước trên chúng ta có thể download firmware vào chíp hoặc chạy chương trình debug 1 cách bình thường.
+
+
 
 
 
