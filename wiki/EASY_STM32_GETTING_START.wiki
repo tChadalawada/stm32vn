@@ -1,4 +1,4 @@
-= GIỚI THIỆU =
+= 1> GIỚI THIỆU =
 
 EASY_STM32 là header board sử dụng chíp ARM Cortex-M3 STM32 của ST Microelectronics. Phần debug tích hợp sẵn trên board vì thế chỉ cần 1 máy tính, 1 sợi dây cable USB, và một header board EASY_STM32 người lập trình viên có thể coding và test theo cách tiện lợi nhất. Ngoài ra, board còn được thiết kế hỗ trợ cho nhiều dòng ARM MCU khác nhau bao gồm STM32F1, STM32F2 và STM32F4. Hỗ trợ đồng thời 2 dạng package thông dụng bao gồm LQFP-48 và LQFP-64.
 
@@ -6,7 +6,7 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
 
 [http://ujtag.googlecode.com/svn/trunk/Image/EASY_STM32_PL.PNG]
 
-= TÍNH NĂNG =
+= 2> TÍNH NĂNG =
 
 ==EASY_STM32 bao gồm các tính năng sau:==
 
@@ -25,23 +25,23 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
     * User LED (PB1).
     * Externsion GPIO pin header.
 
-= SCHEMATIC =
+= 3> SCHEMATIC =
 
 [http://stm32vn.googlecode.com/svn/trunk/hardware/EASY_STM32/hardware/schematic/schematic_easy_stm32_revA.pdf EASY_STM32 REVA]
 
 ----
 
-= GETTING START =
+= 4> GETTING START =
 
   Phần này hướng dẫn cách setup môi trường và cách sử dụng EASY_STM32.
    
-==Cài đặt USB driver==
+== 4.1> Cài đặt USB driver==
   
   Khi khi kết nối USB JTAG vào máy tính sẽ hiện lên hộp thoại, khi đó ta trỏ đến thư mục chứa driver là có thể hoàn tất việc cài đặt. Driver có thể download ở link sau:
 
 [http://ujtag.googlecode.com/svn/trunk/ujtag_files/CDM20802%20WHQL%20Certified.zip CDM20802 WHQL Certified.zip]
 
-==Chương trình nạp standalone CoFlash ==
+== 4.2> Sử dụng chương trình nạp standalone CoFlash ==
   
   Có thể sử dụng chương trình nạp standalone CoFlash, đây là chương trình miễn phí được hỗ trợ bởi trang [http://www.coocox.org], ta có thể download [http://ujtag.googlecode.com/svn/trunk/ujtag_files/CoFlash-1.3.6.exe CoFlash-1.3.6] và cài đặt vào máy tính.
 
