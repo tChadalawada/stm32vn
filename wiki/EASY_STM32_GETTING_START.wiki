@@ -24,5 +24,8 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
     * RTC clock source 32.768 KHz.
     * User LED (PB1).
     * Externsion GPIO pin header.
-   
+
+= SCHEMATIC =
+
+[http://stm32vn.googlecode.com/svn/trunk/hardware/EASY_STM32/hardware/schematic/schematic_easy_stm32_revA.pdf EASY_STM32 REVA]   
  
