@@ -43,6 +43,10 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
 
 ==Chương trình nạp standalone==
   
-  Có thể sử dụng chương trình nạp standalone CoFlash. Đây là chương trình miễn phí được hỗ trợ bởi trang [http://www.coocox.org]
+  Có thể sử dụng chương trình nạp standalone CoFlash, đây là chương trình miễn phí được hỗ trợ bởi trang [http://www.coocox.org], ta có thể download theo link sau:
+
+[http://ujtag.googlecode.com/svn/trunk/ujtag_files/CoFlash-1.3.6.exe CoFlash-1.3.6]
+
+
 
  
