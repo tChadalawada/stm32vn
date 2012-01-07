@@ -33,4 +33,11 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
 
   Phần này hướng dẫn cách setup môi trường và cách sử dụng EASY_STM32.
    
- ==Cài đặt USB driver== 
+==Cài đặt USB driver==
+  
+  Khi khi kết nối USB JTAG vào máy tính sẽ hiện lên hộp thoại, khi đó ta trỏ đến thư mục chứa driver là có thể hoàn tất việc cài đặt. Driver có thể download ở link sau:
+
+[http://ujtag.googlecode.com/svn/trunk/ujtag_files/CDM20802%20WHQL%20Certified.zip CDM20802 WHQL Certified.zip]
+
+
+ 
