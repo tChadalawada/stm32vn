@@ -1,11 +1,8 @@
-#summary One-sentence summary of this page.
-
-= Introduction =
+= GIỚI THIỆU =
 
 Add your content here.
 
-
-= Details =
+= TÍNH NĂNG =
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
