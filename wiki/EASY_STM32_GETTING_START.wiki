@@ -81,6 +81,12 @@ Có thể xem tham số của plugin bằng cách lick vào nút Settings
 Ở table debug, chọn Use: Coocox Colink Debugger (xem hình dưới), các thuộc tính khác để mặc định.
 Ta có thể thay đổi thông số Jtag clk bằng cách ấn vào nút Settings phía bên phải. Giá trị Jtag clk thông thường được chọn cỡ < 1/10 tần số thạch anh trên board. Nếu set quá thấp thì tốc độ download firmware và debug sẽ giảm, nếu quá cao Jtag tap controller không thể đáp ứng kịp gây ra tình trạng treo chương trình debug.
 
+[http://www.arm.vn/Portals/0/CongCu/UJTAG/UJTAG11.JPG]
+
+[http://www.arm.vn/Portals/0/CongCu/UJTAG/UJTAG12.JPG]
+
+
+
 
 
  
