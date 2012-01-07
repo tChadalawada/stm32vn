@@ -16,4 +16,13 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
 
 ==EASY_STM32 bao gồm các ngoại vi như sau:==
 
+    * JTAG Interface.
+    * UART Interface.
+    * Power Supply (external or via USB cable). 
+    * MicroSD Card Interface (SPI or SDIO, fefault SPI).
+    * RF Module Interface (RFM12, SPI).
+    * RTC clock source 32.768 KHz.
+    * User LED (PB1).
+    * Externsion GPIO pin header.
+   
  
