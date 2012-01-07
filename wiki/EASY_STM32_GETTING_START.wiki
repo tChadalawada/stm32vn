@@ -99,6 +99,10 @@ Sau khi hoàn tất các bước trên chúng ta có thể download firmware và
 
 = 6> HÌNH ẢNH BOARD THỰC TẾ =
 
+  [http://stm32vn.googlecode.com/svn/trunk/image/EASY_STM32/IMG_0717.JPG]
+
+  [http://stm32vn.googlecode.com/svn/trunk/image/EASY_STM32/IMG_0718.JPG]
+
 
 
 
