@@ -55,6 +55,13 @@ Cấu hình CooFlash
 
 Các thao tác lập trình Flash cho chíp STM32F103RC
 
+== 4.3> Sử dụng với Keil IDE ==
+  
+  Trước tiên ta download và cài đặt các gói phần mềm sau:
+
+  a) [http://ujtag.googlecode.com/svn/trunk/tools/KEIL-FOR-ARM-4.10.rar KEIL-FOR-ARM-4.10.rar]
+
+  b) [http://ujtag.googlecode.com/svn/trunk/ujtag_files/CooCox_Colink_MDK_Plugin_V1.82_Setup.exe CooCox_Colink_MDK_Plugin_V1.82_Setup.exe]
 
 
  
