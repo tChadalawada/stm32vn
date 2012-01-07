@@ -1,6 +1,6 @@
   * [Home ↑ Home]
   * [Home EASY_STM32]
-    * [EASY_STM32_GETTING_START Bắt đầu với EASY_STM32]     
+    * [EASY_STM32_GETTING_START BẮT ĐẦU VỚI EASY_STM32]     
   * [Home Hardware Design]
     * [Hardware_Design Thiết kế phần cứng với STM32]
   * [Home Download]
