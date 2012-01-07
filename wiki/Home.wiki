@@ -2,6 +2,6 @@
   * [Home EASY_STM32]
     * [EASY_STM32_GETTING_START Bắt đầu với EASY_STM32]     
   * [Home Hardware Design]
-    * [Linux_4_Newbie Linux cho người bắt đầu]
+    * [Hardware_Design Thiết kế phần cứng với STM32]
   * [Home Download]
   * [Home Email Us]
