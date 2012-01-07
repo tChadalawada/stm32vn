@@ -65,6 +65,12 @@ Các thao tác lập trình Flash cho chíp STM32F103RC
 
   Chúng ta sẽ cài đặt KEIL IDE trước, rồi mới cài đặt plugin. Sau đó chúng ta có thể cấu hình theo các bước minh họa sau:
 
+[http://www.arm.vn/Portals/0/CongCu/UJTAG/UJTAG8.JPG]
+
+ *Ở toolbar chọn menu Flash à Configurable Flash Tools.
+ *Chọn Use Target Driver for Flash Programming.
+ *Ở mục drop-down chọn CooCox Colink Debugger.
+ *Tick vào mục Update Target before Debugging.
 
 
 
