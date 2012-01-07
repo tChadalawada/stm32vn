@@ -4,4 +4,6 @@
   * [Home HARDWARE DESIGN]
     * [Hardware_Design Thiết kế phần cứng với STM32]
   * [Home DOWNLOAD]
+    * [EASY_STM32_SCH EASY STM32 SCHEMATIC]
+    * [SOURCE_CODE SOURCE CODE DEMO] 
   * [Home CONTACT US]
