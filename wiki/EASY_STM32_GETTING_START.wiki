@@ -1,8 +1,6 @@
 = GIỚI THIỆU =
 
-EASY_STM32 là header board sử dụng chíp ARM Cortex-M3 STM32 của ST Microelectronics. Phần debug tích hợp sẵn trên board vì thế chỉ cần 1 máy tính, 1 sợi dây cable USB, và một header board EASY_STM32 người lập trình viên có thể coding và test theo cách tiện lợi nhất.
-
-Ngoài ra, board còn được thiết kế hỗ trợ cho nhiều dòng ARM MCU khác nhau bao gồm STM32F1, STM32F2 và STM32F4. Hỗ trợ đồng thời 2 dạng package thông dụng bao gồm LQFP-48 và LQFP-64.
+EASY_STM32 là header board sử dụng chíp ARM Cortex-M3 STM32 của ST Microelectronics. Phần debug tích hợp sẵn trên board vì thế chỉ cần 1 máy tính, 1 sợi dây cable USB, và một header board EASY_STM32 người lập trình viên có thể coding và test theo cách tiện lợi nhất. Ngoài ra, board còn được thiết kế hỗ trợ cho nhiều dòng ARM MCU khác nhau bao gồm STM32F1, STM32F2 và STM32F4. Hỗ trợ đồng thời 2 dạng package thông dụng bao gồm LQFP-48 và LQFP-64.
 
 EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể dùng làm kit phát triển sản phẩm mẫu trước khi cho ra các sản phẩm chính thức.
 
