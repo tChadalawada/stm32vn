@@ -6,6 +6,7 @@ Ngoài ra, board còn được thiết kế hỗ trợ cho nhiều dòng ARM MCU
 
 EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể dùng làm kit phát triển sản phẩm mẫu trước khi cho ra các sản phẩm chính thức.
 
+[http://ujtag.googlecode.com/svn/trunk/Image/EASY_STM32_PL.PNG]
 
 = TÍNH NĂNG =
 
