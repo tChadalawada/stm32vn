@@ -87,6 +87,17 @@ Ta có thể thay đổi thông số Jtag clk bằng cách ấn vào nút Settin
 
 Sau khi hoàn tất các bước trên chúng ta có thể download firmware vào chíp hoặc chạy chương trình debug 1 cách bình thường.
 
+----
+
+= 5> CODE DEMO =
+
+  Source code demo có thể down load ở link sau:
+
+  [http://stm32vn.googlecode.com/svn/trunk/src/EASY_STM32/]
+
+----
+
+= 6> HÌNH ẢNH BOARD THỰC TẾ =
 
 
 
