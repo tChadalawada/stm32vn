@@ -63,6 +63,10 @@ Các thao tác lập trình Flash cho chíp STM32F103RC
 
   b) [http://ujtag.googlecode.com/svn/trunk/ujtag_files/CooCox_Colink_MDK_Plugin_V1.82_Setup.exe CooCox_Colink_MDK_Plugin_V1.82_Setup.exe]
 
+  Chúng ta sẽ cài đặt KEIL IDE trước, rồi mới cài đặt plugin. Sau đó chúng ta có thể cấu hình theo các bước minh họa sau:
+
+
+
 
  
 
