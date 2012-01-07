@@ -8,12 +8,12 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
 
 = TÍNH NĂNG =
 
-  ==EASY_STM32 bao gồm các tính năng sau:==
+==EASY_STM32 bao gồm các tính năng sau:==
 
     * Hỗ trợ các dòng STM32 F1, F2 & F4.
     * Hỗ trợ package LQFP-48 và LQFP64.
     * On board debugger : JTAG, UART, Power Supply (via USB cable).
 
-  ==EASY_STM32 bao gồm các ngoại vi như sau:==
+==EASY_STM32 bao gồm các ngoại vi như sau:==
 
  
