@@ -29,6 +29,14 @@ EASY_STM32 thích hợp cho người mới tìm hiểu ARM CM3 hoặc có thể 
 
 [http://stm32vn.googlecode.com/svn/trunk/hardware/EASY_STM32/hardware/schematic/schematic_easy_stm32_revA.pdf EASY STM32 SCHEMATIC REVA]
 
+*BUG REPORT
+
+Hardware EASY_STM32 REVA đang tồn tại những bug như sau:
+  - JTAG buffer U5 (TDI) --> Không dùng U5, nối tắc các đường tín hiệu tương ứng.
+  - Chân port PA3 chưa được đưa ra ngoài header.
+
+=> Các bug này sẽ được fix ở phiên bản tiếp theo kèm theo những cải tiến mới.
+
 ----
 
 = 4> GETTING START =
