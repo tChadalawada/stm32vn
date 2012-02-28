@@ -1,3 +1,4 @@
+# iwconfig
 eth1      IEEE 802.11b/g  ESSID:"linksys"
           Mode:Managed  Frequency:2.412 GHz  Access Point: 00:1E:E5:75:E7:A6
           Bit Rate:24 Mb/s   Tx-Power=13 dBm
@@ -18,4 +19,22 @@ eth1      IEEE 802.11b/g  ESSID:"linksys"
 64 bytes from 192.168.1.1: seq=2827 ttl=64 time=5.085 ms
 64 bytes from 192.168.1.1: seq=2828 ttl=64 time=3.618 ms
 64 bytes from 192.168.1.1: seq=2829 ttl=64 time=5.767 ms
+
+
+# iwlist eth1 scan
+eth1      Scan completed :
+          Cell 01 - Address: 00:25:9C:04:60:CC
+                    ESSID:"UNITCorp"
+                    Mode:Managed
+                    Frequency:2.452 GHz (Channel 9)
+                    Quality=73/100  Signal level=-73 dBm  Noise level=-96 dBm
+                    Encryption key:on
+                    Bit Rates:1 Mb/s; 2 Mb/s; 5.5 Mb/s; 11 Mb/s; 6 Mb/s
+                              9 Mb/s; 12 Mb/s; 18 Mb/s; 24 Mb/s; 36 Mb/s
+                              48 Mb/s; 54 Mb/s
+                    IE: WPA Version 1
+                        Group Cipher : TKIP
+                        Pairwise Ciphers (1) : TKIP
+                        Authentication Suites (1) : PSK
+
 
