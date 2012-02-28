@@ -1,0 +1,21 @@
+eth1      IEEE 802.11b/g  ESSID:"linksys"
+          Mode:Managed  Frequency:2.412 GHz  Access Point: 00:1E:E5:75:E7:A6
+          Bit Rate:24 Mb/s   Tx-Power=13 dBm
+          Retry short limit:8   RTS thr=2347 B   Fragment thr=2346 B
+          Encryption key:<too big>   Security mode:open
+          Power Management:off
+          Link Quality=60/100  Signal level=-71 dBm  Noise level=-91 dBm
+          Rx invalid nwid:0  Rx invalid crypt:137  Rx invalid frag:0
+          Tx excessive retries:2109  Invalid misc:3646   Missed beacon:0
+
+
+64 bytes from 192.168.1.1: seq=2821 ttl=64 time=4.875 ms
+64 bytes from 192.168.1.1: seq=2822 ttl=64 time=3.990 ms
+64 bytes from 192.168.1.1: seq=2823 ttl=64 time=4.483 ms
+64 bytes from 192.168.1.1: seq=2824 ttl=64 time=3.608 ms
+64 bytes from 192.168.1.1: seq=2825 ttl=64 time=4.328 ms
+64 bytes from 192.168.1.1: seq=2826 ttl=64 time=3.843 ms
+64 bytes from 192.168.1.1: seq=2827 ttl=64 time=5.085 ms
+64 bytes from 192.168.1.1: seq=2828 ttl=64 time=3.618 ms
+64 bytes from 192.168.1.1: seq=2829 ttl=64 time=5.767 ms
+
