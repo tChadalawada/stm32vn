@@ -1,2 +1,4 @@
 http://gobotronics.wordpress.com/tag/rfm12/
-http://gobotronics.wordpress.com/tag/rfm12/
+http://openenergymonitor.org/emon/node/271
+http://jeelabs.net/projects/cafe/wiki
+
