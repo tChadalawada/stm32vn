@@ -8,7 +8,7 @@ MSB LSB
 
 Đa thức sử dụng để tính CRC-8: 
 
-g(D) = D8 + D2 + D + 1	 => 1 0000 0111 (Polynomial) 
+g(D) = D8 + D2 + D + 1	 => 1 0000 0111 (Polynomial) (CRC-8-CCITT) 
 
 Tư tưởng chính là ta cứ thực hiện phép XOR giữa data string và polynomial. 
 
