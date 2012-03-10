@@ -250,4 +250,11 @@ unsigned char CRC8_BlockChecksum( const void *data, int length ) {
 }
 }}}
 
+------------------------
+Reference
+
+Online CRC check tool:
+
+[http://ghsi.de/CRC/]
+
  
