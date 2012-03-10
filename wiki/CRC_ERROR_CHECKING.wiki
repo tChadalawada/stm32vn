@@ -1,13 +1,56 @@
-#summary One-sentence summary of this page.
+= Cách tính CRC-8 trong việc kiểm soát lỗi dữ liệu được truyền =
+== Cách 1: Phương pháp Direct Calculation ==
 
-= Introduction =
+Giả sử ta có chuỗi data như sau: 
 
-Add your content here.
+MSB LSB 
+10000000 00000001 10100011 = Data String (80 01 A3 h) 
+
+Đa thức sử dụng để tính CRC-8: 
+
+g(D) = D8 + D2 + D + 1	 => 1 0000 0111 (Polynomial) 
+
+Tư tưởng chính là ta cứ thực hiện phép XOR giữa data string và polynomial. 
+
+Đối với chuỗi data string, ta thêm 8 bits 0 vào cuối (ở vị trí LSB) 1 lần duy nhất trước khi thực hiện các phép XOR sau đó. 
+
+Lưu ý là bit đầu tiên trong Polynomial ( 1 0000 0111 ) được align thẳng hàng với bit có giá trị là 1 đầu tiên trong data string tính từ MSB ( 1 0000000 00000001 10100011 00000000 ) 
+
+Phép XOR có rule như sau: 
+
+0 + 0 => 0 
+1 + 1 => 0 
+0 + 1 => 1 
+1 + 0 => 1 
+
+Điều kiện dừng của phép lặp XOR là khi ta align polynomial với data string thì tính từ vị trí xuất hiện giá trị 1 đầu tiên của data string đến cuối data string không đủ 8 bit. 
+
+Nên kết quả data string của phép XOR cuối cùng chính là CRC-8 
+
+{{{
+10000000 00000001 10100011 => data string 
+
+10000000 00000001 10100011 00000000 (add 8 bits value 0) 
+10000011 1 (polynomial) 
+00000011 10000001 10100011 00000000 (XOR between data string and polynomial) 
+10 0000111 (move polynomial to the next appear of value 1 in data string) 
+01 10001111 10100011 00000000 
+1 00000111 
+0 10001000 10100011 00000000 
+10000011 1 
+00001011 00100011 00000000 
+1000 00111 
+0011 00011011 00000000 
+10 0000111 
+01 00010101 00000000 
+1 00000111 
+0 00010010 00000000 
+10000 0111 
+00010 01110000 
+10 0000111 
+00 01111110 
+100000111 
+}}}
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ 
