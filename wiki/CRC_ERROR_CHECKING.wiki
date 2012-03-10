@@ -83,7 +83,7 @@ Cách tra như sau:
 10001001 (result in lookup table) 
 
 00000001 10100011 00000000 (shift 8th bit of data string to left) 
-10001000 (XOR with above result lookup table) 
+10001001 (XOR with above result lookup table) 
 
 10110001 (result in lookup table) 
 
