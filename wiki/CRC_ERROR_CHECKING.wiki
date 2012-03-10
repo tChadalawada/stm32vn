@@ -52,5 +52,47 @@ Nên kết quả data string của phép XOR cuối cùng chính là CRC-8
 100000111 
 }}}
 
+== Cách 2: Phương pháp Table-Driven ==
 
+Giả sử ta có chuỗi data như sau: 
+
+MSB LSB 
+10000000 00000001 10100011 00000000 = Data String (80 01 A3 h) 
+
+1. Khởi tạo 1 biến 1 byte với giá trị là 0 (8 bits đều là 0) 
+
+2. Thực hiện phép XOR giữa data string với byte vừa khởi tạo đó 
+
+3. Giá trị sau khi XOR của byte đầu tiên được sử dụng để tra trong bảng tìm kiếm 
+
+Cách tra như sau: 
+
+- Bảng có giá trị index từ 0->255 (ví dụ tên bảng là tbl) nên khi giá trị cần tra là 00010010b (18 dec) => kết quả trả về là tbl[ 18 ] là 0x7E (01111110b) 
+
+4. Dịch chuỗi data string 8 bits về bên trái 
+
+5. Tiếp tục thực hiện phép XOR giữa chuỗi data string và kết quả vừa tra được trong bảng tìm kiếm (lưu ý là chúng ta luôn so byte đầu tiên bên MSB) 
+
+6. Thực hiện tương tự cho đến byte cuối cùng thì kết quả tra được chính là CRC-8
+
+{{{
+10000000 00000001 10100011 00000000 (data string) 
+00000000 (init variable) 
+10000000 00000001 10100011 00000000 (XOR result) 
+
+10001001 (result in lookup table) 
+
+00000001 10100011 00000000 (shift 8th bit of data string to left) 
+10001000 (XOR with above result lookup table) 
+
+10110001 (result in lookup table) 
+
+10100011 00000000 (shift 8th bit of data string to left) 
+00010010 (XOR with above result lookup table) 
+
+01111110 (result in lookup table) 
+
+00000000 (shift 8th bit of data string to left) 
+01111110 => CRC
+}}}
  
