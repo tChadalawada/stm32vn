@@ -95,4 +95,39 @@ Cách tra như sau:
 00000000 (shift 8th bit of data string to left) 
 01111110 => CRC
 }}}
+
+*Cách tạo bảng tham chiếu CRC:* 
+
+Để tạo bảng tham chiếu CRC, ta làm như sau: 
+
+1. Tạo 1 mảng 1 chiều 256 phần tử 
+
+2. Duyệt từng phần tử trong bảng, gán giá trị của crc bằng index của phần tử đang xét 
+
+3. Duyệt từng bit trong crc đang xét, nếu bit đầu của crc là 0x01 thì dịch trái crc 1 bit và thực hiện hiện phép bù bit với 0x07, còn nếu không thì chỉ thực hiện dịch trái 1 bit mà thôi. Thực hiện với tất cả các bit của crc 
+
+4. Cập nhật lại giá trị crc mới vào bảng và duyệt tiếp các phần tử còn lại.
+
+{{{
+void CCRC8Dlg::gen_crc8_table()  
+{                         
+	uint16_t  index_ui16;    /*table index*/             
+	uint8_t   bit_ui8;           /*bit counter*/             
+	uint8_t   crc_ui8;          /* CRC result*/            
+	
+	for ( index_ui16 = 0;  index_ui16 < 256;  index_ui16++ )            
+	{                    
+		crc_ui8 = index_ui16;                  
+		for ( bit_ui8 = 0;  bit_ui8 < 8;  bit_ui8++ )                  
+		{                          
+			if ( crc_ui8 & 0x80 )                                  
+				crc_ui8 = ( crc_ui8 << 1 ) ^ 0x07;                          
+			else                                   
+				crc_ui8 = ( crc_ui8 << 1 );                  
+		}                        
+		crc8Table_ui8[index_ui16] = crc_ui8;      
+	}  
+}
+
+}}}
  
