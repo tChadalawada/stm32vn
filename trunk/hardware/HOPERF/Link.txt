@@ -2,4 +2,7 @@ http://gobotronics.wordpress.com/tag/rfm12/
 http://openenergymonitor.org/emon/node/271
 http://jeelabs.net/projects/cafe/wiki
 http://www.voti.nl/rfm70/
+http://jeelabs.net/projects/11/wiki/Receiving_OOKASK_with_a_modified_RFM12B
+
+
 
