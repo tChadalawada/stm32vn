@@ -2,8 +2,12 @@
 
 <wiki:video url="http://www.youtube.com/watch?v=nt1NjIeTAgY"/>
 
+--------------------
+
 = RFM70 DEMO =
 
 <wiki:video url="http://www.youtube.com/watch?v=tKHz3vo0hkc"/>
+
+--------------------
 
 = C1100 DEMO =
