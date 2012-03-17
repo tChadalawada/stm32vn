@@ -4,6 +4,6 @@
 
 = RFM70 DEMO =
 
-[http://www.youtube.com/watch?v=tKHz3vo0hkc&feature=player_embedded]
+<wiki:video url="http://www.youtube.com/watch?v=tKHz3vo0hkc"/>
 
 = C1100 DEMO =
