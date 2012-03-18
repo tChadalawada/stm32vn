@@ -4,5 +4,7 @@ http://jeelabs.net/projects/cafe/wiki
 http://www.voti.nl/rfm70/
 http://jeelabs.net/projects/11/wiki/Receiving_OOKASK_with_a_modified_RFM12B
 
+https://github.com/stesie/h3600_rfm12 ---> RFM12B Linux (h3600-rfm12) 
+
 
 
