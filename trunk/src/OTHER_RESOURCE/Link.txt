@@ -1,1 +1,5 @@
 https://github.com/leaflabs/maple-bootloader
+
+https://my.st.com/public/STe2ecommunities/mcu/Lists/cortex_mx_stm32/Flat.aspx?RootFolder=%2fpublic%2fSTe2ecommunities%2fmcu%2fLists%2fcortex_mx_stm32%2fSTM32F217%20%20Ethernet%20PHY%20KSZ8721BL%20%20LwIp1%2e3%2e2%20-%20ping%20trouble&FolderCTID=0x01200200770978C69A1141439FE559EB459D7580009C4E14902C3CDE46A77F0FFD06506F5B&TopicsView=https%3A%2F%2Fmy%2Est%2Ecom%2Fpublic%2FSTe2ecommunities%2Fmcu%2FLists%2Fcortex_mx_stm32%2FAllItems%2Easpx%3FPaged%3DTRUE%26p_StickyPost%3D%26p_DiscussionLastUpdated%3D20120308%252012%253a07%253a44%26p_ID%3D21130%26View%3D%257bF47A9ED8%252dE726%252d42BE%252dACED%252d732F13B66581%257d%26FolderCTID%3D0x012001%26PageFirstRow%3D121&currentviews=136
+---> STM32 Ethernet
+
