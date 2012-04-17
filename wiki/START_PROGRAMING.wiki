@@ -1,5 +1,14 @@
 #summary One-sentence summary of this page.
 
+=VI ĐIỀU KHIỂN STM32 LÀ GÌ=
+
+[http://en.wikipedia.org/wiki/STM32 STM32 From Wikipedia]
+
+[http://stm32vn.googlecode.com/svn/trunk/doc/STM32F107/CD00220364_Datasheet.pdf STM32F10X DATASHEET]
+
+[http://stm32vn.googlecode.com/svn/trunk/doc/STM32F_User_Manual.pdf STM32F10X USER MANUAL]
+
+
 =BẮT ĐẦU VỚI LẬP TRÌNH ARM CORTEX-M3=
 
 Sau đây là phần hướng dẫn cho mem mới học STM32. Chủ yếu chỉ ra các thao tác cần thiết để có được chương trình Hello World xuất ra cổng USART hoặc là chớp tắt đèn LED (PB1) sử dụng Keil IDE như thế nào.
@@ -73,4 +82,3 @@ Các bước thực hiện như sau:
 Với project cơ bản [http://stm32vn.googlecode.com/svn/trunk/src/EASY_STM32/Keil/stm32_base.rar stm32_base.rar] chúng ta có thể viết chương trình chớp tắt đèn LED trong vòng 5 phút. 
 
 Sau khi biên dịch vào load firmware vào MCU thì chương trình sẽ in ra console dòng chữ Hello World và đồng thời chớp tắt đèn LED trên portB PB1.
-
