@@ -15,7 +15,7 @@ Sau đây là phần hướng dẫn cho mem mới học STM32. Chủ yếu chỉ
 
 Project cơ bản:  [http://stm32vn.googlecode.com/svn/trunk/src/EASY_STM32/Keil/stm32_base.rar stm32_base.rar]
 
-ục đích của stm32_base nhằm tạo ra project nền tảng để áp dụng cho nhiều project khác nhau, ta có thể  xem qua cấu trúc của project như sau:
+Mục đích của stm32_base nhằm tạo ra project nền tảng để áp dụng cho nhiều project khác nhau, ta có thể  xem qua cấu trúc của project như sau:
 
 [http://stm32vn.googlecode.com/svn/trunk/image/EASY_STM32/BASE_PROJECT_STRUCTURE.PNG]
 
