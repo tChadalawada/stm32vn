@@ -1,5 +1,13 @@
 #summary One-sentence summary of this page.
 
+=Bắt Đầu Với Lập Trình ARM Cortex-M3=
+
 Sau đây là phần hướng dẫn cho mem mới học STM32. Chủ yếu chỉ ra các thao tác cần thiết để có được chương trình Hello World xuất ra cổng USART hoặc là chớp tắt đèn LED (PB1) sử dụng Keil IDE như thế nào.
 
 Project cơ bản:  [http://stm32vn.googlecode.com/svn/trunk/src/EASY_STM32/Keil/stm32_base.rar stm32_base.rar]
+
+ục đích của stm32_base nhằm tạo ra project nền tảng để áp dụng cho nhiều project khác nhau, ta có thể  xem qua cấu trúc của project như sau:
+
+[http://stm32vn.googlecode.com/svn/trunk/image/EASY_STM32/BASE_PROJECT_STRUCTURE.PNG]
+
+
