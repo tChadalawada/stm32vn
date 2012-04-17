@@ -63,7 +63,9 @@ Các bước thực hiện như sau:
 
  Khi muốn thực hiện đảo trạng thái (toggle) ta có thể viết theo cú pháp sau:
 
+{{{
  LED((BitAction)(1-LED_STATUS)); 
+}}}
 
 - Công việc kế đến là cấu hình chân port điều khiển LED (PB1)
 
