@@ -1,2 +1,3 @@
 https://github.com/YuuichiAkagawa/STM32F4_ADK
 https://github.com/YuuichiAkagawa/STM32F4_ADK/wiki
+http://developer.android.com/guide/topics/usb/accessory.html ---> USB accessory document
