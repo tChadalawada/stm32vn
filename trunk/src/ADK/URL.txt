@@ -2,3 +2,4 @@ https://github.com/YuuichiAkagawa/STM32F4_ADK
 https://github.com/YuuichiAkagawa/STM32F4_ADK/wiki
 http://developer.android.com/guide/topics/usb/accessory.html ---> USB accessory document
 http://mbed.org/cookbook/mbed-with-Android-ADK ---> From embed
+http://developer.android.com/guide/topics/usb/accessory.html#manifest ---> more detail about the accessorry
