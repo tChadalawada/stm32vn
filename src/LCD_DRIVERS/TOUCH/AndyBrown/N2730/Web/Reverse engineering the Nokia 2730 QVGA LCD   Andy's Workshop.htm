@@ -1,0 +1,1126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0081)http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US" class="cufon-active cufon-ready"><head profile="http://gmpg.org/xfn/11"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<title>  Reverse engineering the Nokia 2730 QVGA LCD | Andy's Workshop</title>
+
+<link rel="stylesheet" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/jquery.fancybox-1.2.6.css" type="text/css" media="screen">
+<!--[if lt IE 7]>
+	<link rel="stylesheet" type="text/css" href="http://andybrown.me.uk/ws/wp-content/themes/LightBright/css/ie6style.css" />
+	<script type="text/javascript" src="http://andybrown.me.uk/ws/wp-content/themes/LightBright/js/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script type="text/javascript">DD_belatedPNG.fix('img#logo, a.bubble, .overlay, span.comment-count, #sidebar .search, .entry .post, .entry-top, .share .share_button, .share a.arrow, .share .buttons, .share .buttons a span.tooltip span.left-arrow, .share img, .entry-bottom, .comment-icon .bubble, .comment-icon, .widget-content, div.avatar span.avatar-overlay');</script>
+<![endif]-->
+<!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="http://andybrown.me.uk/ws/wp-content/themes/LightBright/css/ie7style.css" />
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="Andy&#39;s Workshop RSS Feed" href="http://andybrown.me.uk/ws/feed/">
+<link rel="alternate" type="application/atom+xml" title="Andy&#39;s Workshop Atom Feed" href="http://andybrown.me.uk/ws/feed/atom/">
+<link rel="pingback" href="http://andybrown.me.uk/ws/xmlrpc.php">
+
+				
+	<script type="text/javascript" async="" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/ga.js"></script><script type="text/javascript">//<![CDATA[
+	// Google Analytics for WordPress by Yoast v4.2.3 | http://yoast.com/wordpress/google-analytics/
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount','UA-19294066-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]></script>
+<link rel="alternate" type="application/rss+xml" title="Andy&#39;s Workshop » Reverse engineering the Nokia 2730 QVGA LCD Comments Feed" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/feed/">
+		<link rel="stylesheet" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/style-Black.css" type="text/css" media="screen">
+	<meta content="LightBright v.1.6" name="generator"><link rel="stylesheet" id="collapseomatic-css-css" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/style(1).css" type="text/css" media="all">
+<link rel="stylesheet" id="wp_dlmp_styles-css" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/styles.css" type="text/css" media="all">
+<link rel="stylesheet" id="shortcodesStyleSheets-css" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/shortcodes.css" type="text/css" media="all">
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/jquery.js"></script>
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/collapse.js"></script>
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/comment-reply.js"></script>
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/swfobject.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://andybrown.me.uk/ws/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://andybrown.me.uk/ws/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="stm32plus: A full photoframe application" href="http://andybrown.me.uk/ws/2012/02/19/photoframe/">
+<link rel="next" title="stm32plus: FAT32 &amp; FAT16 drivers" href="http://andybrown.me.uk/ws/2012/03/24/stm32plus-fat32-fat16-drivers/">
+<meta name="generator" content="WordPress 3.3.1">
+<link rel="canonical" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop.htm">
+<link rel="shortlink" href="http://andybrown.me.uk/ws/?p=1417">
+
+<!-- Start Of Script Generated By cforms v11.6.1 [Oliver Seidel | www.deliciousdays.com] -->
+<link rel="stylesheet" type="text/css" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/minimal.css">
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/cforms.js"></script>
+<!-- End Of Script Generated By cforms -->
+
+	<style type="text/css">
+	.download-info .download-button {
+		background-image: url(http://andybrown.me.uk/ws/wp-content/plugins/download-monitor/page-addon/downloadbutton.gif);
+	}
+	.download-info .more-button {
+		background-image: url(http://andybrown.me.uk/ws/wp-content/plugins/download-monitor/page-addon/morebutton.gif);
+	}
+	</style>
+
+<meta name="GRAND FlAGallery" content="1.65">
+<link rel="stylesheet" type="text/css" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/shCore.css"><link rel="stylesheet" type="text/css" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/shThemeDefault.css"><meta id="syntaxhighlighteranchor" name="syntaxhighlighter-version" content="3.1.3">
+
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/audio-player.js"></script>  
+<script src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/cufon-yui.js" type="text/javascript"></script><style type="text/css">cufon{text-indent:0!important;}@media screen,projection{cufon{display:inline!important;display:inline-block!important;position:relative!important;vertical-align:middle!important;font-size:1px!important;line-height:1px!important;}cufon cufontext{display:-moz-inline-box!important;display:inline-block!important;width:0!important;height:0!important;overflow:hidden!important;text-indent:-10000in!important;}cufon canvas{position:relative!important;}}@media print{cufon{padding:0!important;}cufon canvas{display:none!important;}}</style>
+<script src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/League_Gothic_400.font.js" type="text/javascript"></script>
+<script type="text/javascript">
+			Cufon.replace('ul.nav li a',{textShadow: '-1px -1px 1px #031112', hover: { textShadow: '-1px -1px 1px #031112'}})('h1')('h2')('h3')('h4')('h5')('h6')('span.date')('span.comment-count')('.widget h3.title', {textShadow: '-1px -1px 1px #032328'})('span.fn')('span.fn a')('.wp-pagenavi span', {textShadow: '-1px -1px 1px rgba(0,0,0,0.5)'})('.wp-pagenavi a.page',{textShadow: '-1px -1px 1px rgba(0,0,0,0.5)'}); 
+		AudioPlayer.setup("http://andybrown.me.uk/ws/wp-content/themes/LightBright/js/player.swf", { width: 380 });  
+</script><style type="text/css" media="screen">p.audioplayer_container span {visibility:hidden;height:24px;overflow:hidden;padding:0;border:none;}</style>
+
+<script type="text/javascript" id="idc-comment-wrap-js" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/wordpressTemplateCommentWrapper2.php"></script><script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/wordpressTemplateLinkWrapper2.php"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/document_iterator.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/find_proxy.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/get_html_text.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/global_constants.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/name_injection_builder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/number_injection_builder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/string_finder.js"></script><script src="chrome-extension://lifbcibllhkdhoafpjfnlhfpfgnpldfl/change_sink.js"></script><meta name="document_iterator.js"><meta name="find_proxy.js"><meta name="get_html_text.js"><meta name="global_constants.js"><meta name="name_injection_builder.js"><meta name="number_injection_builder.js"><meta name="string_finder.js"><meta name="change_sink.js"><link rel="stylesheet" href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idcCSS.php" type="text/css"><script src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/comment-func.php" type="text/javascript"></script><script src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/remote-login.php" type="text/javascript"></script><script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/quant.js"></script></head>
+<body>
+	<div id="container">
+		<div id="header" class="clearfix">
+			<a href="http://andybrown.me.uk/ws">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/logo.png" alt="logo" id="logo">
+			</a>
+			<p id="slogan"></p>
+			
+			<ul id="menu-menu" class="nav superfish clearfix sf-js-enabled" style="padding-left: 72px; "><li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="http://andybrown.me.uk/ws/contact/" class="sf-with-ul"><cufon class="cufon cufon-canvas" alt="Contact" style="width: 40px; height: 18px; "><canvas width="52" height="23" style="width: 52px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>Contact</cufontext></cufon><span class="sf-sub-indicator"><cufon class="cufon cufon-canvas" alt=" " style="width: 3px; height: 18px; "><canvas width="17" height="23" style="width: 17px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext> </cufontext></cufon></span></a>
+<ul class="sub-menu" style="display: none; visibility: hidden; "><span class="top-arrow"></span>
+	<li id="menu-item-68" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-68"><a href="http://andybrown.me.uk/ws/about/"><cufon class="cufon cufon-canvas" alt="About" style="width: 30px; height: 18px; "><canvas width="42" height="23" style="width: 42px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>About</cufontext></cufon></a></li>
+	<li id="menu-item-73" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-73"><a href="http://andybrown.me.uk/ws/terms-and-conditions/"><cufon class="cufon cufon-canvas" alt="Terms " style="width: 34px; height: 18px; "><canvas width="47" height="23" style="width: 47px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>Terms </cufontext></cufon><cufon class="cufon cufon-canvas" alt="and " style="width: 22px; height: 18px; "><canvas width="35" height="23" style="width: 35px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>and </cufontext></cufon><cufon class="cufon cufon-canvas" alt="conditions" style="width: 54px; height: 18px; "><canvas width="64" height="23" style="width: 64px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>conditions</cufontext></cufon></a></li>
+</ul>
+</li>
+<li id="menu-item-993" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-993"><a href="http://andybrown.me.uk/ws/category/stm32-2/" class="sf-with-ul"><cufon class="cufon cufon-canvas" alt="STM32" style="width: 35px; height: 18px; "><canvas width="44" height="23" style="width: 44px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>STM32</cufontext></cufon><span class="sf-sub-indicator"><cufon class="cufon cufon-canvas" alt=" " style="width: 3px; height: 18px; "><canvas width="17" height="23" style="width: 17px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext> </cufontext></cufon></span></a>
+<ul class="sub-menu" style="display: none; visibility: hidden; "><span class="top-arrow"></span>
+	<li id="menu-item-1283" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1283"><a href="http://andybrown.me.uk/ws/stm32plus-index-of-posts/"><cufon class="cufon cufon-canvas" alt="stm32plus " style="width: 57px; height: 18px; "><canvas width="70" height="23" style="width: 70px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>stm32plus </cufontext></cufon><cufon class="cufon cufon-canvas" alt="– " style="width: 11px; height: 18px; "><canvas width="24" height="23" style="width: 24px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>– </cufontext></cufon><cufon class="cufon cufon-canvas" alt="index " style="width: 31px; height: 18px; "><canvas width="44" height="23" style="width: 44px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>index </cufontext></cufon><cufon class="cufon cufon-canvas" alt="of " style="width: 13px; height: 18px; "><canvas width="27" height="23" style="width: 27px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>of </cufontext></cufon><cufon class="cufon cufon-canvas" alt="posts" style="width: 28px; height: 18px; "><canvas width="39" height="23" style="width: 39px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>posts</cufontext></cufon></a></li>
+</ul>
+</li>
+<li id="menu-item-69" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-69"><a href="http://andybrown.me.uk/ws/category/avrprogenv/"><cufon class="cufon cufon-canvas" alt="AVR" style="width: 21px; height: 18px; "><canvas width="30" height="23" style="width: 30px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>AVR</cufontext></cufon></a></li>
+<li id="menu-item-998" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-998"><a href="http://andybrown.me.uk/ws/category/avrprogenv/arduino-specific/"><cufon class="cufon cufon-canvas" alt="Arduino" style="width: 40px; height: 18px; "><canvas width="50" height="23" style="width: 50px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>Arduino</cufontext></cufon></a></li>
+<li id="menu-item-508" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-508"><a href="http://andybrown.me.uk/ws/category/hardware-projects/"><cufon class="cufon cufon-canvas" alt="Hardware " style="width: 52px; height: 18px; "><canvas width="65" height="23" style="width: 65px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>Hardware </cufontext></cufon><cufon class="cufon cufon-canvas" alt="projects" style="width: 42px; height: 18px; "><canvas width="53" height="23" style="width: 53px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>projects</cufontext></cufon></a></li>
+<li id="menu-item-78" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"><a href="http://andybrown.me.uk/ws/downloads/"><cufon class="cufon cufon-canvas" alt="Downloads" style="width: 55px; height: 18px; "><canvas width="66" height="23" style="width: 66px; height: 23px; top: -4px; left: -2px; "></canvas><cufontext>Downloads</cufontext></cufon></a></li>
+</ul>		</div> <!-- end #header -->
+		
+		<div id="content-area" class="clearfix">
+		
+			<div id="main-area">				
+		
+		
+<div class="entry text">
+	<div class="entry-top"></div>
+	
+	<div class="share">
+	<span class="share_button">share</span>
+	
+	<div class="share-box">
+		<div class="buttons">
+																	
+			<a href="http://twitter.com/home?status=Reverse%20engineering%20the%20Nokia%202730%20QVGA%20LCD%20http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon1.png" alt="">
+				<span class="tooltip">
+					tweet this post					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://del.icio.us/post?url=http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/&title=Reverse%20engineering%20the%20Nokia%202730%20QVGA%20LCD">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon2.png" alt="">
+				<span class="tooltip">
+					share on delicious					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://www.digg.com/submit?phase=2&url=http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/&title=Reverse%20engineering%20the%20Nokia%202730%20QVGA%20LCD">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon3.png" alt="">
+				<span class="tooltip">
+					dig this post					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://www.stumbleupon.com/submit?url=http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/&title=Reverse%20engineering%20the%20Nokia%202730%20QVGA%20LCD">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon4.png" alt="">
+				<span class="tooltip">
+					share on stumbleupon					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://www.squidoo.com/lensmaster/bookmark?http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon5.png" alt="">
+				<span class="tooltip">
+					share on squidoo					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://in.buzz.yahoo.com/buzz?targetUrl=http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon6.png" alt="">
+				<span class="tooltip">
+					share on yahoo buzz					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://www.blinklist.com/index.php?Action=Blink/addblink.php&Url=http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/&Title=Reverse%20engineering%20the%20Nokia%202730%20QVGA%20LCD">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon7.png" alt="">
+				<span class="tooltip">
+					share on blinklist					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://www.mixx.com/submit?page_url=http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/&title=Reverse%20engineering%20the%20Nokia%202730%20QVGA%20LCD">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon8.png" alt="">
+				<span class="tooltip">
+					share on mixx					<span class="left-arrow"></span>
+				</span>
+			</a>
+			<a href="http://www.furl.net/storeIt.jsp?t=Reverse%20engineering%20the%20Nokia%202730%20QVGA%20LCD&u=http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/">
+				<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/share-icon9.png" alt="">
+				<span class="tooltip">
+					share on furl					<span class="left-arrow"></span>
+				</span>
+			</a>
+		</div> <!-- end .buttons -->
+		
+		<a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#" class="arrow"></a>
+	</div> <!-- end .share-box -->
+</div> <!-- end .share -->	
+	<div class="post clearfix">
+		<div class="content clearfix">
+			
+						
+						
+			<a href="http://andybrown.me.uk/ws?post_type=post" class="bubble">Reverse engineering the Nokia 2730 QVGA LCD</a>
+			
+			<h1 class="title"><cufon class="cufon cufon-canvas" alt="Reverse " style="width: 94px; height: 40px; "><canvas width="121" height="48" style="width: 121px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>Reverse </cufontext></cufon><cufon class="cufon cufon-canvas" alt="engineering " style="width: 139px; height: 40px; "><canvas width="167" height="48" style="width: 167px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>engineering </cufontext></cufon><cufon class="cufon cufon-canvas" alt="the " style="width: 43px; height: 40px; "><canvas width="71" height="48" style="width: 71px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>the </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Nokia " style="width: 69px; height: 40px; "><canvas width="97" height="48" style="width: 97px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>Nokia </cufontext></cufon><cufon class="cufon cufon-canvas" alt="2730 " style="width: 61px; height: 40px; "><canvas width="88" height="48" style="width: 88px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>2730 </cufontext></cufon><cufon class="cufon cufon-canvas" alt="QVGA " style="width: 65px; height: 40px; "><canvas width="93" height="48" style="width: 93px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>QVGA </cufontext></cufon><cufon class="cufon cufon-canvas" alt="LCD" style="width: 41px; height: 40px; "><canvas width="60" height="48" style="width: 60px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>LCD</cufontext></cufon></h1>
+			<span class="date"><cufon class="cufon cufon-canvas" alt="Mar " style="width: 50px; height: 36px; "><canvas width="75" height="43" style="width: 75px; height: 43px; top: -7px; left: -1px; "></canvas><cufontext>Mar </cufontext></cufon><cufon class="cufon cufon-canvas" alt="06" style="width: 26px; height: 36px; "><canvas width="44" height="43" style="width: 44px; height: 43px; top: -7px; left: -1px; "></canvas><cufontext>06</cufontext></cufon></span>
+			
+			<div class="clear"></div>
+			
+						
+			
+													
+			
+						
+						
+						
+			
+				<p>
+You may have noticed that I have a bit of a ‘thing’ for the little TFT displays that you can commonly get on ebay. There’s something satisfying about writing your own driver code and seeing one of these little panels come alive with your graphics.
+</p>
+<h2><cufon class="cufon cufon-canvas" alt="Why " style="width: 33px; height: 24px; "><canvas width="49" height="29" style="width: 49px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Why </cufontext></cufon><cufon class="cufon cufon-canvas" alt="the " style="width: 26px; height: 24px; "><canvas width="43" height="29" style="width: 43px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>the </cufontext></cufon><cufon class="cufon cufon-canvas" alt="2730 " style="width: 37px; height: 24px; "><canvas width="53" height="29" style="width: 53px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>2730 </cufontext></cufon><cufon class="cufon cufon-canvas" alt="LCD?" style="width: 33px; height: 24px; "><canvas width="46" height="29" style="width: 46px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>LCD?</cufontext></cufon></h2>
+<ul>
+<li>It’s high resolution (320×240, 200ppi) which means that graphics will look good.</li>
+<li>It’s used in a lot of models: Nokia 5000, 2730, 5130, 5220, 7100. Good for availability.</li>
+<li>It’s cheap, as low as £3.99 on ebay.</li>
+<li>It supports 262K (18-bit) colour mode.</li>
+<li>It looks like I can find the connector for it. Don’t underestimate the difficulty of this!</li>
+<li>The 24-pin connector has too few pins to be a direct drive LCD. That means it has a controller with embedded display RAM that I hope I can program.</li>
+<li>The service schematics give away the connector pinout. It’s definitely a controller and not direct drive.</li>
+</ul>
+<h2><cufon class="cufon cufon-canvas" alt="Where " style="width: 46px; height: 24px; "><canvas width="63" height="29" style="width: 63px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Where </cufontext></cufon><cufon class="cufon cufon-canvas" alt="do " style="width: 20px; height: 24px; "><canvas width="37" height="29" style="width: 37px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>do </cufontext></cufon><cufon class="cufon cufon-canvas" alt="you " style="width: 28px; height: 24px; "><canvas width="44" height="29" style="width: 44px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>you </cufontext></cufon><cufon class="cufon cufon-canvas" alt="start?" style="width: 42px; height: 24px; "><canvas width="54" height="29" style="width: 54px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>start?</cufontext></cufon></h2>
+<p>
+I started by getting a second-hand 2730 off ebay for less than 30 pounds. I had some vague notion that I’d be able to hook up my Ant18e logic analyser to the display connector to analyse the conversation between the phone’s MCU and the display.
+</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/phone.jpg" border="0"><br>
+<em>The Nokia 2730 I bought on ebay</em>
+</p>
+<p>
+That hope was scotched pretty quickly. There’s no way I can get probes on to the connector pins. I don’t know what I was thinking. Never mind, it’s not a bad phone and I might actually keep it as a backup.
+</p>
+<p>
+While I had the phone in bits I was able to examine the connector mounted to the FPC. It’s a 24-pin 0.4mm pitch board-to-board connector that I have not yet been able to positively identify.
+</p>
+<p>
+There are no markings on it and it ‘looks like’ a lot of products from Hirose, Molex, Kyocera and others. The problem with ‘looking like’ is that the differences between these parts is in the 0.1mm range and I know from some speculative purchases that if you get the wrong one then it just doesn’t mate.
+</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/boardConnector.jpg" border="0"><br>
+<em>The connector on the phone pcb</em>
+</p>
+<p>
+When attempting to reverse engineer these connectors look for short traces that run directly to a plane. These are guaranteed to be ground connections.</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/lcdConnector.jpg" border="0"><br>
+<em>The connector on the LCD FPC cable</em>
+</p>
+<p>
+Fortunately I was able to source a handful of the board-side of these connectors from an online phone parts store. Still no clue as to the manufacturer though, and I’d like to hear from anyone who knows <em>for sure</em> what they are.
+</p>
+<h3><cufon class="cufon cufon-canvas" alt="Known " style="width: 44px; height: 22px; "><canvas width="59" height="26" style="width: 59px; height: 26px; top: -4px; left: -1px; "></canvas><cufontext>Known </cufontext></cufon><cufon class="cufon cufon-canvas" alt="sources " style="width: 51px; height: 22px; "><canvas width="66" height="26" style="width: 66px; height: 26px; top: -4px; left: -1px; "></canvas><cufontext>sources </cufontext></cufon><cufon class="cufon cufon-canvas" alt="for " style="width: 21px; height: 22px; "><canvas width="37" height="26" style="width: 37px; height: 26px; top: -4px; left: -1px; "></canvas><cufontext>for </cufontext></cufon><cufon class="cufon cufon-canvas" alt="the " style="width: 24px; height: 22px; "><canvas width="39" height="26" style="width: 39px; height: 26px; top: -4px; left: -1px; "></canvas><cufontext>the </cufontext></cufon><cufon class="cufon cufon-canvas" alt="connector" style="width: 61px; height: 22px; "><canvas width="74" height="26" style="width: 74px; height: 26px; top: -4px; left: -1px; "></canvas><cufontext>connector</cufontext></cufon></h3>
+<p>It seems like there is considerable interest in sources for the 24 pin connector. I still don’t know who the OEM is. I’d suspect Hirose as they have past form in supplying Nokia connectors but I’ve been through their online catalogue with a magnifying glass and it’s not any one of the current production lines. Here are some links to online stores that have been found to sell the connector:</p>
+<p><a target="_blank" href="http://gsmserver.com/shop/spares/connectors/connector/lcd_connector_for_nokia_6300.php">gsmserver.com</a></p>
+<p><a target="_blank" href="http://www.cellnetos.com/webshaper/store/viewProd.asp?pkProductItem=399">cellnetos.com</a></p>
+<p><a target="_blank" href="http://stellatech.com/nokia-6120c-6300-6301-8600-lcd-connector,a,en,303133.html">stellatech.com</a>
+</p>
+<h2><cufon class="cufon cufon-canvas" alt="Examining " style="width: 73px; height: 24px; "><canvas width="90" height="29" style="width: 90px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Examining </cufontext></cufon><cufon class="cufon cufon-canvas" alt="the " style="width: 26px; height: 24px; "><canvas width="43" height="29" style="width: 43px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>the </cufontext></cufon><cufon class="cufon cufon-canvas" alt="schematic" style="width: 70px; height: 24px; "><canvas width="83" height="29" style="width: 83px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>schematic</cufontext></cufon></h2>
+<p>
+Nokia schematic RM-578 and RM-579 for the 2730 is available for download on the internet. I get the feeling from the copyright notices on the document that it was not meant to be publicly available so I will not host it on my site.
+</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/connectorSchematic.png" border="0"><br>
+<em>The connector schematic</em>
+</p>
+<p>
+There are a number of key facts that I can deduce from the schematic.</p>
+<ol>
+<li>The interface to the controller is 8-bit. That means 3 transfers per pixel for the 262K colour mode supported by the 2730 phone. That’s quite expensive but certainly workable.</li>
+<li>The control lines indicate that it’s either 8080 or 6800 protocol. The world at large seems to prefer 8080 so I’m going to guess that’s what this one uses.</li>
+<li>The backlight comprises of 4 white LEDs in series and I can see there’s a step-up DC-DC converter that looks like a constant current LED driver.</li>
+</ol>
+<p>
+For those not familiar with the 8080 protocol here’s what the signals mean.
+</p>
+<table class="andy">
+<tbody><tr>
+<td>D0-D7</td>
+<td>The data lines. In this implementation 8 bits are transferred in one transaction.</td>
+</tr>
+<tr>
+<td>CSX</td>
+<td>Chip select. Active low. Can be tied low if there’s nothing else sharing these lines.</td>
+
+</tr>
+<tr>
+<td>DCX</td>
+<td>Data/command select. Set high when transferring graphic data or parameters to commands. Set low when transferring a command (register) number.</td>
+
+</tr>
+<tr>
+<td>WRX</td>
+<td>Write enable. Data is transferred from D0-D7 to the controller on the rising edge of this signal.</td>
+
+</tr>
+<tr>
+<td>RDX</td>
+<td>Read enable. Data is transferred from the controller to D0-D7 on the rising edge of this signal. Can be tied high if reading is not required.</td>
+
+</tr>
+<tr>
+<td>RESX</td>
+<td>Hardware reset. Active low. The datasheet for the controller will specify minimum timings for the reset sequence.</td>
+
+</tr>
+<tr>
+<td>TE</td>
+<td>Tearing effect. This is a pin that the MCU reads from in order to synchronise writing to graphic RAM with the display refresh. An MCU that can refresh the display faster than the frame rate could cause strange ‘tearing effects’ in animation if it is not synchronized with this signal.</td>
+
+</tr>
+</tbody></table>
+<h2><cufon class="cufon cufon-canvas" alt="Building " style="width: 60px; height: 24px; "><canvas width="76" height="29" style="width: 76px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Building </cufontext></cufon><cufon class="cufon cufon-canvas" alt="a " style="width: 12px; height: 24px; "><canvas width="29" height="29" style="width: 29px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>a </cufontext></cufon><cufon class="cufon cufon-canvas" alt="development " style="width: 89px; height: 24px; "><canvas width="106" height="29" style="width: 106px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>development </cufontext></cufon><cufon class="cufon cufon-canvas" alt="board" style="width: 39px; height: 24px; "><canvas width="51" height="29" style="width: 51px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>board</cufontext></cufon></h2>
+<p>
+Using the information gleaned so far I came up with the schematic for a basic development board that should work with my STM32.
+</p>
+<p>
+The constant current LED driver is an <em>OnSemi NCP5007</em> designed for powering up to 5 white LEDs in series. The circuit is straight from the datasheet and the feedback resistor is chosen to be 10Ω which gives a current of 20mA.</p>
+<p>
+<a href="http://andybrown.me.uk/ws/wp-content/images//2730lcd/schematic_large.png" target="_blank"><br>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/schematic_small.png" border="0"><br>
+<em>The Eagle schematic (click for larger)</em><br>
+</a>
+</p>
+<p>
+The output capacitor, C2, needs to have a voltage rating higher than the maximum the IC can supply (which is 22V) to protect it in the case of an open circuit. The inductor L1 must have a self-resonant frequency above 1Mhz because the NCP5007 operates at 1Mhz. So the full parts list is:</p>
+<table class="andy">
+<tbody><tr>
+<th>Name</th>
+<th>Part</th>
+<th>Package</th>
+</tr>
+<tr>
+<td>U1</td>
+<td>OnSemi NCP5007</td>
+<td>SOT23-5</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>22µH inductor</td>
+<td>1212</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>Schottky Diode</td>
+<td>DO214AC</td>
+</tr>
+<tr>
+<td>C1,C5</td>
+<td>4.7µF capacitors</td>
+<td>0805</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>1µF 50V output capacitor</td>
+<td>0805</td>
+</tr>
+<tr>
+<td>C3,C4</td>
+<td>100nF capacitors</td>
+<td>0603</td>
+</tr>
+<tr>
+<td>SV1</td>
+<td>10×2 header</td>
+<td>2.54mm male</td>
+</tr>
+<tr>
+<td>C-2730</td>
+<td>12×2 receptacle</td>
+<td>0.4mm Nokia (please see comments at the bottom of this post for links to known supplier)</td>
+</tr>
+</tbody></table>
+<p>
+I hand-routed the traces and designed it so that the FPC cable from the 24-pin connector would wrap-around the board so that the LCD could be mounted on the opposite side to the LED driver components, with the 2.54mm MCU interface pins sticking up next to it.
+</p>
+<p>
+<a href="http://andybrown.me.uk/ws/wp-content/images//2730lcd/pcbLayout_large.png" target="_blank"><br>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/pcbLayout_small.png" border="0"><br>
+<em>The Eagle PCB layout (click for larger)</em><br>
+</a>
+</p>
+<p>
+The datasheet for the NCP5007 is pretty clear that you can’t just throw together the components and get optimal noise-free operation of the step-up converter. Care needs to be taken to minimise trace lengths and ideally ground and power planes should be used to reduce noise. I placed the components as close to each other as I dare and also used ground and power planes on the bottom layer.
+</p>
+<p>
+The eagle Gerber CAD files were sent off to ITead Studios for manufacturing and two weeks later (yes, patience is a virtue, especially when the Chinese are out celebrating their new year) they were delivered.
+</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/pcb.jpg" border="0"><br>
+<em>The bare PCB, front and back</em>
+</p>
+<p>Note the horrendously fine 0.4mm pitch connector footprint up the top left. The footprint design includes the four ‘posts’ around the corners that help to hold the connector securely to the board. The two 100nF decoupling capacitors next to it are in a fiddly small 0603 package. I chose this size to minimise the chance of them interfering with the FPC connector when it’s pressed down into the board receptacle.</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/pcbBuilt.jpg" border="0"><br>
+<em>After reflow and cleaning</em>
+</p>
+<p>
+My favoured method of mounting SMT components these days is to tin the pads with ordinary solder so you get little bumps, then liberally apply a paste flux and use it as a glue in which to position the SMD components. I then reflow the board carefully on a hot-plate.
+</p>
+<p>
+Generally this works well, particularly with the large multi-pin ICs and connectors. They tend to just sit down nicely when the solder reflows. The smaller passive components such as the capacitors and resistors have a habit of sliding off their bumps before the solder has reflowed. I correct this at the time with a little nudge or afterwards with my heat gun.
+</p>
+<p>
+The 2.54mm connector is hand-soldered after the SMD components have been reflowed.
+</p>
+<p>The V+ and V- pins are not normally connected. They are used to test the backlight driver by connecting it up to an external LED string. i.e. you can connect V+ to the anode of LED1 and chain a further 3 LEDs anode-to-cathode with the final cathode going back to V-.
+</p>
+<p>The EN pin is used to control the backlight. It is active HIGH. Applying a PWM signal to this pin will control the brightness of the backlight.</p>
+<h2><cufon class="cufon cufon-canvas" alt="Blue " style="width: 34px; height: 24px; "><canvas width="50" height="29" style="width: 50px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Blue </cufontext></cufon><cufon class="cufon cufon-canvas" alt="smoke?" style="width: 51px; height: 24px; "><canvas width="64" height="29" style="width: 64px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>smoke?</cufontext></cufon></h2>
+<p>Lets hope not. The issue at stake is whether the controller can take the 3.3V from my STM32 on both VIO and VDD, with VDD being the logic interface that is often driven at 2.8V or even 1.8V by a phone. Every controller datasheet that I have is clear that 3.3V is in range for VDD but we don’t know what this is so this is going to be a nervous power-on.
+</p>
+<p>
+Whatever you do, do not connect this circuit directly to a device with 5V levels such as the Arduino. The inputs and voltages are not 5V tolerant. An Arduino could be used to interface with this LCD with the addition of a level converter.
+</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/backlightOn.jpg" border="0"><br>
+<em>Well I’ll be, it works!</em>
+</p>
+<p>
+So far so good. No reason to get too excited though, in the above photograph all that I’ve done is test that the backlight circuit works and that the LCD powers up. Clearly it’s working so far.
+</p>
+<p>You can also see four white LEDs wired in series in a breadboard behind the LCD. I used this LED string to test the output of the constant current driver before actually connecting the LCD. That’s why my development board exposes the V+ and V- output and feedback pins from the LED driver.</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/devboard.jpg" border="0"><br>
+<em>The dev board, front and back.</em>
+</p>
+<p>
+With the LCD mated snugly to the development board using double-sided sticky pads that keep it clear of the traces on the back of the PCB we’re ready to start reverse engineering the bus protocol.
+</p>
+<h2><cufon class="cufon cufon-canvas" alt="Interrogating " style="width: 94px; height: 24px; "><canvas width="111" height="29" style="width: 111px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Interrogating </cufontext></cufon><cufon class="cufon cufon-canvas" alt="the " style="width: 26px; height: 24px; "><canvas width="43" height="29" style="width: 43px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>the </cufontext></cufon><cufon class="cufon cufon-canvas" alt="controller" style="width: 66px; height: 24px; "><canvas width="81" height="29" style="width: 81px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>controller</cufontext></cufon></h2>
+<p>
+Most controllers have a register that allows you to read back information about the device and manufacturer. This will yield vital clues as to the controller’s identity. I wrote a quick program to read back 8 bytes from  each of the controller’s registers. Most of them will be write-only and won’t tickle the bus but the ones that do will tell us vital information about the controller.
+</p>
+<p>
+Here’s the output from that program. The first column is the register index, the next 8 bytes are the data response. I’ve stripped registers that return just zeros.</p>
+<pre>04 00 54 80 00 00 00 00 00
+09 00 00 61 00 00 00 00 00
+0a 08 08 08 08 08 08 08 08
+0c 06 06 06 06 06 06 06 06
+26 01 01 01 01 01 01 01 01
+2a 00 00 00 00 ef 00 00 00
+2b 00 00 00 01 3f 00 00 00
+2e 00 80 bc b0 f8 00 f8 a4
+30 00 00 00 01 3f 00 00 00
+33 00 00 00 01 40 00 00 00
+3a 00 06 00 00 00 00 00 00
+6a ff ff ff ff ff ff ff ff
+a1 00 54 80 00 0d 03 01 ff
+a8 00 00 54 80 00 0d 03 01
+da 54 54 54 54 54 54 54 54
+db 80 80 80 80 80 80 80 80
+</pre>
+<p>Right away we’re on to something. Trawling through my collection of datasheets for TFTs I can see that the Leadis LDS285 uses 04h as its read device identifier (RDDID) code. The first byte returned by these controllers is always a dummy read, the real data is the values 54h and 80h, with 54h being the manufacturer code.
+</p>
+<p>
+A quick search of the online list of MIPI manufacturer ids shows that 54h belongs to <em>Arasan Chip Systems, Inc.</em> Arasan is not a familiar name to me but their website reveals that they are engaged in making vertically integrated MIPI chipsets, i.e. the LCD controller, camera, file system etc. that you’d need if you were building a phone. The worrying news is that Leadis, whom we suspect of being the controller manufacturer have gone bust. I’m guessing that there is some kind of licensing agreement going on whereby Arasan and Leadis have collaborated to create an integrated controller.
+</p>
+<p>
+Back to the device output, there is more evidence to support our theory that we’re looking at either an LDS285 or something that’s command-compatible with it. The datasheet states that commands DAh and DBh return the two identifier codes, and we can see that in the output.
+</p>
+<p>
+More evidence in our favour is that registers 2Ah and 2Bh hold the column and row address start and end values. 0..239 and 0..319. The values that we see match. This is looking good.
+</p>
+<p>
+Some random googling shows that there is <a href="http://rossum.posterous.com/" target="_blank">someone else</a> who’s experimented with LCDs from similar models to this one and determined that they tend to be command-compatible with a controller called the Magnachip MC2PA8201. This controller is itself a cut-down version of the LDS285. I’m going to assume that this is the one and see how far I get. Now it’s time to write an stm32plus driver for it and see if we can it to work!
+</p>
+<h2><cufon class="cufon cufon-canvas" alt="Success!" style="width: 60px; height: 24px; "><canvas width="76" height="29" style="width: 76px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Success!</cufontext></cufon></h2>
+<p>
+After much experimentation I’ve determined the following about the LCD in the 2730:</p>
+<ul>
+<li>The controller is documented to support colour depths up to 24-bit but this LCD will not go higher than 262K colours. Attempts to use 24-bit mode results in display corruption. This is not surprising given that the phone specifications are for a 262K colour display. Colours transferred in 262K mode must have their lower 2-bits zeroed.</li>
+<li>262K colours (3 transfers per pixel) and 64K colours (2 transfers per pixel) work perfectly. There are lower colour depths documented but I’m not concerned with them. I believe “an exercise for the reader” is the usual excuse wheeled out at this juncture.</li>
+<li>Hardware scrolling is supported.</li>
+<li>Portrait and landscape modes are supported and you can choose the orientation of each mode to suit which way up you’re mounting the LCD.</li>
+<li>Low power (sleep) mode works.</li>
+<li>Four gamma curve configurations are supported. My experimentation shows that the default gamma is probably the best.</li>
+<li>Either some of the colours are verboten or this cheap LCD has problems with a very small subset of colours. Very rarely an attempt to write a run of a certain solid colour will result in weird corruption. This is odd because adjusting the colour by only 1-bit will correct the problem.</li>
+</ul>
+<p>Here’s a few photographs of the LCD in action.
+</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/texttest.jpg" border="0"><br>
+<em>Testing the LCD</em>
+</p>
+<p>
+As usual the sensor in the digital camera fails to capture just how pin-sharp the little LCD appears to the human eye.
+</p>
+<p>
+<img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/bitmaptest.jpg" border="0"><br>
+<em>Displaying a bitmap</em>
+</p>
+<h2><cufon class="cufon cufon-canvas" alt="Watch " style="width: 46px; height: 24px; "><canvas width="63" height="29" style="width: 63px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Watch </cufontext></cufon><cufon class="cufon cufon-canvas" alt="the " style="width: 26px; height: 24px; "><canvas width="43" height="29" style="width: 43px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>the </cufontext></cufon><cufon class="cufon cufon-canvas" alt="demo " style="width: 40px; height: 24px; "><canvas width="57" height="29" style="width: 57px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>demo </cufontext></cufon><cufon class="cufon cufon-canvas" alt="video" style="width: 36px; height: 24px; "><canvas width="49" height="29" style="width: 49px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>video</cufontext></cufon></h2>
+<p>
+stm32plus 1.1.2 comes with drivers for the 64K and 262K colour modes for this LCD. You can see my usual demo sequence that exercises the capabilities of both the LCD and my graphics library in the video below.
+</p>
+<p>
+<object style="height: 390px; width: 500px"><param name="movie" value="http://www.youtube.com/v/493r8jG8A4E?version=3&amp;feature=player_detailpage"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><embed src="http://www.youtube.com/v/493r8jG8A4E?version=3&amp;feature=player_detailpage" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="500" height="360"></object>
+</p>
+<h2><cufon class="cufon cufon-canvas" alt="Initialisation " style="width: 91px; height: 24px; "><canvas width="107" height="29" style="width: 107px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Initialisation </cufontext></cufon><cufon class="cufon cufon-canvas" alt="sequence" style="width: 64px; height: 24px; "><canvas width="76" height="29" style="width: 76px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>sequence</cufontext></cufon></h2>
+<p>
+The key to getting any of these TFT devices up and running is the initialisation sequence, i.e. what you have to do after power-on in order to get the display powered up and ready for commands. To help you on the way, this is the basic sequence for this controller. The extract is from the stm32plus driver, but the code should be self-explanatory.</p>
+<div><div id="highlighter_901745" class="syntaxhighlighter  cpp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">01</div><div class="line number2 index1 alt1">02</div><div class="line number3 index2 alt2">03</div><div class="line number4 index3 alt1">04</div><div class="line number5 index4 alt2">05</div><div class="line number6 index5 alt1">06</div><div class="line number7 index6 alt2">07</div><div class="line number8 index7 alt1">08</div><div class="line number9 index8 alt2">09</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp comments">// reset the LCD</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="cpp plain">resetPin.reset();</code></div><div class="line number4 index3 alt1"><code class="cpp plain">MillisecondTimer::delay(5);</code></div><div class="line number5 index4 alt2"><code class="cpp plain">resetPin.set();</code></div><div class="line number6 index5 alt1"><code class="cpp plain">MillisecondTimer::delay(10);</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="cpp comments">// send the init sequence</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="cpp plain">writeCommand(SLEEP_OUT);</code></div><div class="line number11 index10 alt2"><code class="cpp plain">writeCommand(DISPLAY_INVERSION_OFF);</code></div><div class="line number12 index11 alt1"><code class="cpp plain">writeCommand(IDLE_MODE_OFF);</code></div><div class="line number13 index12 alt2"><code class="cpp plain">writeCommand(NORMAL_DISPLAY_MODE_ON);</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="cpp keyword bold">if</code><code class="cpp plain">(_orientation==Orientation::Portrait)</code></div><div class="line number16 index15 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">writeCommand(MEMORY_ACCESS_CONTROL,0xc8);&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// BGR</code></div><div class="line number17 index16 alt2"><code class="cpp keyword bold">else</code></div><div class="line number18 index17 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">writeCommand(MEMORY_ACCESS_CONTROL,0xa8);&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// BGR and horiz</code></div><div class="line number19 index18 alt2">&nbsp;</div><div class="line number20 index19 alt1"><code class="cpp comments">// wait</code></div><div class="line number21 index20 alt2">&nbsp;</div><div class="line number22 index21 alt1"><code class="cpp plain">MillisecondTimer::delay(125);</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="cpp comments">// turn the display on</code></div><div class="line number25 index24 alt2">&nbsp;</div><div class="line number26 index25 alt1"><code class="cpp plain">writeCommand(DISPLAY_ON);</code></div></div></td></tr></tbody></table></div></div>
+<h2><cufon class="cufon cufon-canvas" alt="Drawing " style="width: 59px; height: 24px; "><canvas width="76" height="29" style="width: 76px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>Drawing </cufontext></cufon><cufon class="cufon cufon-canvas" alt="on " style="width: 20px; height: 24px; "><canvas width="37" height="29" style="width: 37px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>on </cufontext></cufon><cufon class="cufon cufon-canvas" alt="the " style="width: 26px; height: 24px; "><canvas width="43" height="29" style="width: 43px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>the </cufontext></cufon><cufon class="cufon cufon-canvas" alt="LCD" style="width: 25px; height: 24px; "><canvas width="37" height="29" style="width: 37px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>LCD</cufontext></cufon></h2>
+<p>
+Drawing on these devices requires a fairly common set of operations. Firstly you move the <em>drawing window</em> to define a rectangle whose top left is at the first point you want to draw, then you send as many pixels to the display as you need.
+</p>
+<p>
+If you send just one pixel then you get a single point at the top left of your <em>drawing window</em> and you can then move the window for the next point. This is useful for complex objects. Here’s a code sample for moving the <em>drawing window</em> to a point and extending the window from that point to fill the rest of the display.</p>
+<div><div id="highlighter_723834" class="syntaxhighlighter  cpp"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">01</div><div class="line number2 index1 alt1">02</div><div class="line number3 index2 alt2">03</div><div class="line number4 index3 alt1">04</div><div class="line number5 index4 alt2">05</div><div class="line number6 index5 alt1">06</div><div class="line number7 index6 alt2">07</div><div class="line number8 index7 alt1">08</div><div class="line number9 index8 alt2">09</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div><div class="line number35 index34 alt2">35</div><div class="line number36 index35 alt1">36</div><div class="line number37 index36 alt2">37</div><div class="line number38 index37 alt1">38</div><div class="line number39 index38 alt2">39</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp keyword bold">void</code> <code class="cpp plain">moveTo(int16_t x,int16_t y) {</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">_xpos=x;</code></div><div class="line number4 index3 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">_ypos=y;</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">writeCommand(COLUMN_ADDRESS_SET);</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp keyword bold">if</code><code class="cpp plain">(_orientation==Orientation::Portrait) {</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// x=0..239</code></div><div class="line number11 index10 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(x);</code></div><div class="line number12 index11 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0);</code></div><div class="line number13 index12 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0xef);</code></div><div class="line number14 index13 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number15 index14 alt2"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp keyword bold">else</code> <code class="cpp plain">{</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(x &gt;&gt; 8);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// x=0..319</code></div><div class="line number18 index17 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(x &amp; 0xff);</code></div><div class="line number19 index18 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(1);</code></div><div class="line number20 index19 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0x3f);</code></div><div class="line number21 index20 alt2"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number22 index21 alt1">&nbsp;</div><div class="line number23 index22 alt2"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">writeCommand(PAGE_ADDRESS_SET);</code></div><div class="line number24 index23 alt1">&nbsp;</div><div class="line number25 index24 alt2"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp keyword bold">if</code><code class="cpp plain">(_orientation==Orientation::Portrait) {</code></div><div class="line number26 index25 alt1">&nbsp;</div><div class="line number27 index26 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(y &gt;&gt; 8);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// y=0..319</code></div><div class="line number28 index27 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(y &amp; 0xff);</code></div><div class="line number29 index28 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(1);</code></div><div class="line number30 index29 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0x3f);</code></div><div class="line number31 index30 alt2"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number32 index31 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp keyword bold">else</code> <code class="cpp plain">{</code></div><div class="line number33 index32 alt2">&nbsp;</div><div class="line number34 index33 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// y=0..239</code></div><div class="line number35 index34 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(y);</code></div><div class="line number36 index35 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0);</code></div><div class="line number37 index36 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">writeData(0xef);</code></div><div class="line number38 index37 alt1"><code class="cpp spaces">&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number39 index38 alt2"><code class="cpp plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>
+If you can divide your drawing requirements into discreet rectangles then it is far more efficient to send a command that defines the <em>drawing window</em> to match that rectangle and then repeatedly send pixels until the rectangle is filled. This is the approach taken by many of the algorithms in the <a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/index.php/2011/12/28/stm32plus-a-c-library-for-stm32-development">stm32plus</a> graphics library.
+</p>
+<h2><cufon class="cufon cufon-canvas" alt="This " style="width: 32px; height: 24px; "><canvas width="49" height="29" style="width: 49px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>This </cufontext></cufon><cufon class="cufon cufon-canvas" alt="board " style="width: 42px; height: 24px; "><canvas width="59" height="29" style="width: 59px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>board </cufontext></cufon><cufon class="cufon cufon-canvas" alt="is " style="width: 16px; height: 24px; "><canvas width="33" height="29" style="width: 33px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>is </cufontext></cufon><cufon class="cufon cufon-canvas" alt="sometimes " style="width: 77px; height: 24px; "><canvas width="94" height="29" style="width: 94px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>sometimes </cufontext></cufon><cufon class="cufon cufon-canvas" alt="for " style="width: 24px; height: 24px; "><canvas width="40" height="29" style="width: 40px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>for </cufontext></cufon><cufon class="cufon cufon-canvas" alt="sale" style="width: 28px; height: 24px; "><canvas width="41" height="29" style="width: 41px; height: 29px; top: -5px; left: -1px; "></canvas><cufontext>sale</cufontext></cufon></h2>
+<p>
+This project resulted in more parts and boards than I need and I’m aware that many people are not comfortable working with SMT components. As a result I’m prepared to sell off some of them on a strictly limited numbers basis.
+</p>
+<p>
+The last remaining fully assembled boards that I have are now listed on ebay, <a href="http://cgi.ebay.co.uk/ws/eBayISAPI.dll?ViewItem&item=230777459588">Please click here</a> to view the listing.
+</p>
+<p><br></p>
+<p>
+Please use <a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/index.php/contact">my contact form</a> if you’re interested and I’ll get back to you as soon as I can.
+</p>
+<table>
+<tbody><tr>
+<td><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/warning.png" border="0"></td>
+<td>I’ve said it above but I need to repeat it here. Do not hook up this board directly to a 5V Arduino without some form of level conversion in place.</td>
+</tr>
+</tbody></table>
+			
+						
+																	
+		</div> <!-- end .content -->
+		
+		<div class="entry-bottom-top"></div>
+	
+		<div class="entry-meta clearfix">
+			<p class="meta"><span class="main">Posted by <a href="http://andybrown.me.uk/ws/author/admin/" title="Posts by Andy" rel="author">Andy</a>									 in <a href="http://andybrown.me.uk/ws/category/hardware-projects/" title="View all posts in Hardware projects" rel="category tag">Hardware projects</a>, <a href="http://andybrown.me.uk/ws/category/stm32-2/" title="View all posts in STM32" rel="category tag">STM32</a>
+			</span> <span class="comment-count"><a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#comments" title="Comment on Reverse engineering the Nokia 2730 QVGA LCD"><span class="IDCommentsReplace" style="display:none"><cufon class="cufon cufon-canvas" alt="1417" style="width: 16px; height: 14px; "><canvas width="24" height="17" style="width: 24px; height: 17px; top: -3px; left: 0px; "></canvas><cufontext>1417</cufontext></cufon></span><cufon class="cufon cufon-canvas" alt="1" style="width: 4px; height: 14px; "><canvas width="12" height="17" style="width: 12px; height: 17px; top: -3px; left: 0px; "></canvas><cufontext>1</cufontext></cufon><span style="display:none" id="IDCommentPostInfoPermalink1417"><cufon class="cufon cufon-canvas" alt="http%3A%2F%2Fandybrown.me.uk%2Fws%2F2012%2F03%2F06%2Freverse-engineering-the-nokia-2730-qvga-lcd%2F" style="width: 462px; height: 14px; "><canvas width="470" height="17" style="width: 470px; height: 17px; top: -3px; left: 0px; "></canvas><cufontext>http%3A%2F%2Fandybrown.me.uk%2Fws%2F2012%2F03%2F06%2Freverse-engineering-the-nokia-2730-qvga-lcd%2F</cufontext></cufon></span><span style="display:none" id="IDCommentPostInfoTitle1417"><cufon class="cufon cufon-canvas" alt="Reverse+engineering+the+Nokia+2730+QVGA+LCD" style="width: 212px; height: 14px; "><canvas width="219" height="17" style="width: 219px; height: 17px; top: -3px; left: 0px; "></canvas><cufontext>Reverse+engineering+the+Nokia+2730+QVGA+LCD</cufontext></cufon></span><span style="display:none" id="IDCommentPostInfoTime1417"><cufon class="cufon cufon-canvas" alt="2012-03-06+20%3A08%3A10" style="width: 116px; height: 14px; "><canvas width="123" height="17" style="width: 123px; height: 17px; top: -3px; left: 0px; "></canvas><cufontext>2012-03-06+20%3A08%3A10</cufontext></cufon></span><span style="display:none" id="IDCommentPostInfoAuthor1417"><cufon class="cufon cufon-canvas" alt="Andy" style="width: 20px; height: 14px; "><canvas width="27" height="17" style="width: 27px; height: 17px; top: -3px; left: 0px; "></canvas><cufontext>Andy</cufontext></cufon></span><span style="display:none" id="IDCommentPostInfoGuid1417"><cufon class="cufon cufon-canvas" alt="http%3A%2F%2Fandybrown.me.uk%2Fws%2F%3Fp%3D1417" style="width: 233px; height: 14px; "><canvas width="241" height="17" style="width: 241px; height: 17px; top: -3px; left: 0px; "></canvas><cufontext>http%3A%2F%2Fandybrown.me.uk%2Fws%2F%3Fp%3D1417</cufontext></cufon></span></a></span></p>
+					</div> <!-- end .entry-meta -->		
+		
+	</div> <!-- end .main -->
+	
+	<div class="entry-bottom"></div>
+</div> <!-- end .entry -->
+
+
+
+
+    <div class="entry post clearfix">
+      <div class="entry-content">
+	<div class="entry-top"></div>
+	<div class="post clearfix">
+	  <div class="content clearfix">
+       	    <div id="idc-container-parent" class=""><div id="idc-container" class="idc"><div id="IDCommentPopup" style="display: none;" class="idc-info"> <div> <div id="IDCommentPopupInner"> <a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#" class="idc-close"><span>Close</span></a> <h6>Forgot password?</h6> <form> <label for="txtResolveEmail">Please put in your email:</label> <input class="idc-text" id="txtResolveEmail" type="text"> <a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#" class="idc-btn_s"><span>Send me my password!</span></a> </form> <p class="idc-bottom"><a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#">Close message</a></p> </div> <div class="idc-bottom"></div> </div> </div><div id="IDCommentsHead" class="idc-head"> <span id="IDCommentsHeadDivider" style="display:none"></span> <div class="idc-right"> <a href="javascript: showLogin();" id="IDCommentsHeadLogin" class="idc-head_tools-login"><span>Login</span><span class="idc-r"></span></a> <div class="idc-share" onmouseover="showFollowThisDiscussion();" onmouseout="hideFollowThisDiscussion();"> <div class="idc-share_inner" id="IDCommentsHeadFollowMenu" onmouseover="showFollowThisDiscussion();" onmouseout="hideFollowThisDiscussion();"> <ul class="idc-share-tabs" onmouseover="showFollowThisDiscussion();" onmouseout="hideFollowThisDiscussion();"> <li id="IDShareMenuPost" class="idc-sel"><a href="javascript: IDShowFollowPost();"><span>This blog post</span></a></li> <li id="IDShareMenuBlog"><a href="javascript: IDShowFollowBlog();"><span>All blog posts</span></a></li> </ul> <div id="divIdcSharePost" onmouseover="showFollowThisDiscussion();" onmouseout="hideFollowThisDiscussion();"> <p>Subscribe to this blog post's comments through...</p> <ul class="idc-share-list"> <li><a href="http://www.netvibes.com/subscribe.php?type=rss&url=http://intensedebate.com/postRSS/123823692"><img id="IDCommentsShowNetvibes" width="91" height="17" border="0" alt="Add to netvibes"></a></li> <li><a href="http://add.my.yahoo.com/rss?url=http://intensedebate.com/postRSS/123823692"><img id="IDCommentsShowYahoo" border="0" alt="Add to My Yahoo!"></a></li> </ul> <ul class="idc-share-list"> <li><a href="http://fusion.google.com/add?source=atgs&feedurl=http://intensedebate.com/postRSS/123823692"><img id="IDCommentsShowGoogle" border="0" alt="Add to Google"></a></li> <li><a href="http://my.msn.com/addtomymsn.armx?id=rss&ut=http://intensedebate.com/postRSS/123823692"><img id="IDCommentsShowMsn" border="0" style="width: 92px; height: 17px;" alt="Add to Microsoft Live"></a></li> </ul> <p class="idc-b"><a href="http://intensedebate.com/postRSS/123823692"><img id="IDCommentsShowRss" alt="RSS Icon"> RSS Feed</a></p> <div class="idc-subscribe-email"> <p><strong>Subscribe via email</strong></p> <span id="IDCSubscribeSpan0"><input type="text" value="Email Address" id="IDCSubscribeEmail0" class="idc-text" onfocus="this.style.color=&#39;#333&#39;;this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;){this.style.color=&#39;#ccc&#39;;this.value=&#39;Email Address&#39;;}"></span> <span id="IDCSubscribeSubmit0"><a class="idc-btn_s" href="javascript:IDCSubscribeByEmail(0);"><span></span><span class="idc-r">Subscribe</span></a> </span> </div> </div> <div id="divIdcShareBlog" style="display:none" onmouseover="showFollowThisDiscussion();" onmouseout="hideFollowThisDiscussion();"> <p>Subscribe to this blog's comments through...</p> <ul class="idc-share-list"> <li><a href="http://www.netvibes.com/subscribe.php?type=rss&url=http://intensedebate.com/allBlogCommentsRSS/219851"><img id="IDCommentsShowNetvibes2" width="91" height="17" border="0" alt="Add to netvibes"></a></li> <li><a href="http://add.my.yahoo.com/rss?url=http://intensedebate.com/allBlogCommentsRSS/219851"><img border="0" alt="Add to My Yahoo!" id="IDCommentsShowYahoo2"></a></li> </ul> <ul class="idc-share-list"> <li><a href="http://fusion.google.com/add?source=atgs&feedurl=http://intensedebate.com/allBlogCommentsRSS/219851"><img id="IDCommentsShowGoogle2" border="0" alt="Add to Google"></a></li> <li><a href="http://my.msn.com/addtomymsn.armx?id=rss&ut=http://intensedebate.com/allBlogCommentsRSS/219851"><img border="0" id="IDCommentsShowMsn2" style="width: 92px; height: 17px;" alt="Add to Microsoft Live"></a></li> </ul> <p class="idc-b"><a href="http://intensedebate.com/allBlogCommentsRSS/219851"><img alt="RSS Icon" id="IDCommentsShowRss2"> RSS Feed</a></p> <div class="idc-subscribe-email"> <p><strong>Subscribe via email</strong></p> <span id="IDCSubscribeSpan1"><input type="text" value="Email Address" id="IDCSubscribeEmail1" class="idc-text" onfocus="this.style.color=&#39;#333&#39;;this.value=&#39;&#39;;" onblur="if(this.value==&#39;&#39;){this.style.color=&#39;#ccc&#39;;this.value=&#39;Email Address&#39;;}"></span> <span id="IDCSubscribeSubmit1"><a class="idc-btn_s" href="javascript:IDCSubscribeByEmail(1);"><span></span><span class="idc-r">Subscribe</span></a> </span> </div> </div> </div> <a href="http://intensedebate.com/postRSS/123823692" class="idc-head_tools-share" title="http://intensedebate.com/postRSS/123823692" onmouseover="showFollowThisDiscussion();" onmouseout="hideFollowThisDiscussion();">Follow the discussion</a> </div> </div><h3><span id="idc-commentcount_label">Comments</span><span id="idc-commentcount_wrap"> (<span id="idc-commentcount">21</span>)</span></h3><input type="hidden" id="userid" value=""> <div class="idc-head_action idc-loggingin"> <span><img style="padding-right: 5px" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/ajax-loader.gif" alt="Loading..."> Logging you in...</span> </div> <div class="idc-head_action idc-login" id="IDLoginPopup"> <form id="IDfrmHeaderLogin" method="post" action="http://intensedebate.com/login"> <a href="javascript: hideLoginSignup();" class="idc-close"><span>Close</span></a> <p><strong>Login to IntenseDebate</strong></p> <p>Or <a href="http://intensedebate.com/signup" class="snap_noshots" target="_blank">create an account</a></p> <div class="idc-columns"> <div class="idc-divide"> <label for="IDtxtLoginEmail">Username or Email:</label> </div> <div class="idc-divide"> <label for="IDtxtLoginPass">Password:</label> </div> <span class="idc-clear"></span> </div> <div class="idc-divide"> <input id="IDtxtLoginEmail" name="txtLoginEmail" value="" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);" type="text"> </div> <div class="idc-divide"> <input id="IDtxtLoginPass" name="txtLoginPass" class="idc-text idc-password" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);" type="password"> <p class="idc-fade" <a="" href="javascript: showForgotPassword();">Forgot login?</p> </div> <div class="idc-head_b"> <a class="idc-useopenid snap_noshots" href="javascript: showLoginOpenID();">OpenID</a> <div class="idc-tools"> <a class="idc-btn_l-secondary" href="javascript: hideLoginSignup();"><span></span><span class="idc-r">Cancel</span></a> <a href="javascript: logUserIn();" class="idc-btn_l"><span></span><span class="idc-r"><strong>Login</strong></span></a> </div> </div> </form> </div> <div class="idc-head_action idc-wp-login" id="IDWPLoginPopup"> <form id="IDfrmHeaderWPLogin" method="post" action="http://intensedebate.com/wp-login.php"> <a href="javascript: hideLoginSignup();" class="idc-close"><span>Close</span></a> <span> <img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/wordpress-logo.png" style="margin-bottom: -10px;"> <span style="font-size: 25px; padding-left: 5px; font-family: verdana,serif;">WordPress.com</span> </span> <div class="idc-columns" style="padding-top: 20px;"> <div class="idc-divide"> <label for="IDtxtWPLoginEmail">Username or Email:</label> </div> <div class="idc-divide"> <label for="IDtxtWPLoginPass">Password:</label> </div> <span class="idc-clear"></span> </div> <div class="idc-divide"> <input id="IDtxtWPLoginEmail" name="txtLoginEmail" value="" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);" type="text"> </div> <div class="idc-divide"> <input id="IDtxtWPLoginPass" name="txtLoginPass" class="idc-text idc-password" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);" type="password"> <p class="idc-fade" <a="" href="http://wordpress.com/wp-login.php?action=lostpassword" target="_new">Lost your password?</p> </div> <div class="idc-head_b"> <div class="idc-tools"> <input type="hidden" name="IDtxtWPIDSiteID" value="219851"> <a class="idc-btn_l-secondary" href="javascript: hideLoginSignup();"><span></span><span class="idc-r">Cancel</span></a> <a href="javascript: IDC.$('IDfrmHeaderWPLogin').submit()" class="idc-btn_l"><span></span><span class="idc-r"><strong>Login</strong></span></a> </div> </div> </form> </div> <div class="idc-head_action idc-openid" id="IDLoginOpenIDPopup"> <a href="javascript: hideLoginSignup();" class="idc-close"><span>Close</span></a> <p><strong>Login with your OpenID</strong></p> <p>Or <a href="http://intensedebate.com/openIDSignup" target="_blank">create an account using OpenID</a></p> <div class="idc-divide"> <form action="http://intensedebate.com/loginOpenID" method="post" id="frmHeadLoginOpenID"> <label for="txtHeadLoginOpenID">OpenID URL:</label> <input id="txtHeadLoginOpenID" name="openid" value="http://" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;, false);" type="text"> <input style="display: none;" name="returnAddress" value="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/" type="hidden" id="IDReturnAddress"> </form> </div> <div class="idc-head_b"> <a class="idc-useopenid" href="javascript: showLogin();">Back</a> <div class="idc-tools"> <a class="idc-btn_l-secondary" href="javascript: hideLoginSignup();"><span></span><span class="idc-r">Cancel</span></a> <a class="idc-btn_l" href="javascript: if(document.getElementById('txtHeadLoginOpenID').value.length>7) document.getElementById('frmHeadLoginOpenID').submit(); else showMsgBox('Invalid OpenID url.', '<p>Please put in your OpenID URL and try to login again!</p>', 0, this);"><span></span><span class="idc-r"><strong>Login</strong></span></a> </div> </div> </div> <div class="idc-head_action idc-user"> <div class="idc-right"> <a class="snap_noshots" href="http://intensedebate.com/userDash">Dashboard</a> <span class="idc-divider"><span>|</span></span> <a class="snap_noshots" href="http://intensedebate.com/editprofile">Edit profile</a> <span class="idc-divider"><span>|</span></span> <a class="snap_noshots" href="http://intensedebate.com/logout">Logout</a> </div> <div> <a id="IDCommentUserBarLink1" href="http://intensedebate.com/people/0" class="idc-a snap_noshots"></a> </div> <ul class="idc-user_i"> <li>Logged in as <a id="IDCommentUserBarLink2" class="snap_noshots" href="http://intensedebate.com/people/0"></a></li> </ul> <div class="idc-user_admin" id="idc-user_admin" style="display:none;"> <p><a href="javascript:showHideOpts();" id="IDAdminOptsLink" class="idc-collapselink_closed snap_noshots">Admin Options</a></p> <div id="showHideAdminOpts" style="display:none;"> <p> <input type="hidden" id="IDUserAdminVal" value="1"> <span onclick="javascript: changeDisabledLink();"><label for="chkDisableIDC" class="idc-nofloat"><input type="checkbox" id="chkDisableIDC"> Disable comments for this page</label></span> </p><p><a id="adminOptions" class="idc-btn_s snap_noshots"><span></span><span class="idc-r" id="IDCSavedSettings">Save Settings</span></a></p> <p></p> </div> </div> </div> <div class="idc-toolbar" id="idc-toolbar"> <div id="idc-sortLinks"> <p>Sort by: <a id="IDSortLink1" href="javascript: sortComments(1);" class="idc-sel">Date</a> <a id="IDSortLink0" href="javascript: sortComments(0);">Rating</a> <a id="IDSortLink2" href="javascript: sortComments(2);">Last Activity</a></p> </div> <div id="idc-sortLinksLoading" style="display:none"> Loading comments... </div> </div><span class="idc-clear"></span><div class="idc-message" id="commentMessage" style="display:none;"></div></div><div id="idc-cover" class="idc-comments"><div class="idc-thread" id="IDTrackback27086129"> <div class="idc-tb"> <p class="idc-tb-title"><a href="http://hackaday.com/2012/03/08/reverse-engineering-a-nokia-lcd/">Reverse engineering a Nokia LCD - Hack a Day</a></p> <div class="idc-tb-t"> [...] have been a staple of the hardware makers&nbsp;for years now, so we’re very happy to see [Andy] reverse engineering a full color QVGA display&nbsp;so we can move our grayscale projects over to a full-color [...] </div> <div class="idc-tb-b"> <div class="idc-right" id="IDTrackBackDeleteLink27086129"> </div> <span class="idc-clear"></span> </div> </div></div><div class="idc-thread" id="IDTrackback27086303"> <div class="idc-tb"> <p class="idc-tb-title"><a href="http://ro-stire.ro/?p=118523">Reverse engineering a Nokia LCD | ro-Stire</a></p> <div class="idc-tb-t"> [...] have been a staple of the hardware makers&nbsp;for years now, so we’re very happy to see [Andy] reverse engineering a full color QVGA display&nbsp;so we can move our grayscale projects over to a full-color [...] </div> <div class="idc-tb-b"> <div class="idc-right" id="IDTrackBackDeleteLink27086303"> </div> <span class="idc-clear"></span> </div> </div></div><div class="idc-thread" id="IDTrackback27086820"> <div class="idc-tb"> <p class="idc-tb-title"><a href="http://gekogeek.com/hacks/reverse-engineering-a-nokia-lcd/">Reverse engineering a Nokia LCD » Geko Geek</a></p> <div class="idc-tb-t"> [...] have been a staple of the hardware makers&nbsp;for years now, so we’re very happy to see [Andy] reverse engineering a full color QVGA display&nbsp;so we can move our grayscale projects over to a full-color [...] </div> <div class="idc-tb-b"> <div class="idc-right" id="IDTrackBackDeleteLink27086820"> </div> <span class="idc-clear"></span> </div> </div></div><div class="idc-thread" id="IDTrackback27088425"> <div class="idc-tb"> <p class="idc-tb-title"><a href="http://waxnsuds.com/2012/03/08/reverse-engineering-a-nokia-lcd/">Reverse engineering a Nokia LCD « Hackaday « Cool Internet Projects</a></p> <div class="idc-tb-t"> [...] have been a staple of the hardware makers&nbsp;for years now, so we’re very happy to see [Andy] reverse engineering a full color QVGA display&nbsp;so we can move our grayscale projects over to a full-color [...] </div> <div class="idc-tb-b"> <div class="idc-right" id="IDTrackBackDeleteLink27088425"> </div> <span class="idc-clear"></span> </div> </div></div>	<div class="idc-thread" id="IDThread311464526"><div id="IDComment311464526" class="idc-c "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu311464526" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(311464526);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311464526">+1</span> <a class="idc-v-up" href="javascript: voteComment(311464526, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311464526, 0)"><span>Vote down</span></a> </div> <a href="http://intensedebate.com/profiles/atomsoft" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu311464526&#39;, 1148077)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/81e2c1ad9d4270438ca77c9a7ac133ba" class="idc-avatar" alt="atomsoft&#39;s avatar - Go to profile"> <img class="idc-a-facebook" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/wordpress-favicon.ico" width="16" height="16"></a> <p class="idc-i"> <a href="http://intensedebate.com/profiles/atomsoft">atomsoft</a> <span class="idc-rep idc-level0" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(311464526);">2p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311464526" id="IDCommentTime311464526" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311464526" class="idc-c-t"> <div id="IDComment-CommentText311464526" class="idc-c-t-inner"> You are the man! Thanks for this! </div> </div> <div id="IDCommentBottom311464526" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311464526"> </div> <div id="IDCommentPostReplyLink311464526"> <a class="idc-btn_s" href="javascript: showReply(311464526)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span style="display: none" id="IDCommentCollapseLinkWrapper311464526"><a href="javascript: collapseThread(311464526);" id="IDCommentCollapseLink311464526" class="idc-collapselink">0 replies </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime311464526" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em></span> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311464526" class="idc-thread"></div></div>	<div class="idc-thread" id="IDThread311467963"><div id="IDComment311467963" class="idc-c "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu311467963" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(311467963);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311467963">+1</span> <a class="idc-v-up" href="javascript: voteComment(311467963, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311467963, 0)"><span>Vote down</span></a> </div> <a href="http://intensedebate.com/profiles/atomsoft" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu311467963&#39;, 1148077)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/81e2c1ad9d4270438ca77c9a7ac133ba" class="idc-avatar" alt="atomsoft&#39;s avatar - Go to profile"> <img class="idc-a-facebook" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/wordpress-favicon.ico" width="16" height="16"></a> <p class="idc-i"> <a href="http://intensedebate.com/profiles/atomsoft">atomsoft</a> <span class="idc-rep idc-level0" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(311467963);">2p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311467963" id="IDCommentTime311467963" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311467963" class="idc-c-t"> <div id="IDComment-CommentText311467963" class="idc-c-t-inner"> Do you think any of these will work...? Dont mind the images as they are not exact. The datasheet has better info: <br> <a href="http://www.molex.com/molex/products/listview.jsp?query=&offset=0&filter=&fs=productname%3Aslimstack%2Cpitchmatinginterface%3A0.40mm&npp=20&sType=z&autoNav=&path=cHome%23%23-1%23%23-1~~f12||3234~~ncPCBHEADERS%23%230%23%235&channel=Products" target="_blank">http://www.molex.com/molex/products/listview.jsp?...</a> </div> </div> <div id="IDCommentBottom311467963" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311467963"> </div> <div id="IDCommentPostReplyLink311467963"> <a class="idc-btn_s" href="javascript: showReply(311467963)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <a href="javascript: collapseThread(311467963);" id="IDCommentCollapseLink311467963" class="idc-collapselink">1 reply </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime311467963" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311467963" class="idc-thread"><div id="IDComment311635771" class="idc-c idc-admin "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu311635771" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(311635771);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311635771">+1</span> <a class="idc-v-up" href="javascript: voteComment(311635771, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311635771, 0)"><span>Vote down</span></a> </div> <a href="http://www.andybrown.me.uk/" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu311635771&#39;, 1935698)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/7538185d1176416336357a4038f34dbb" class="idc-avatar" alt="Andy Brown&#39;s avatar - Go to profile"> </a> <p class="idc-i"> <a href="http://www.andybrown.me.uk/">Andy Brown</a> <span class="idc-rep idc-level1" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(311635771);">28p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311635771" id="IDCommentTime311635771" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311635771" class="idc-c-t"> <div id="IDComment-CommentText311635771" class="idc-c-t-inner"> I don't think it is one of the slimstack range. If you look closely at the photo of the board-side connector in my article you can see that the cutout in the plastic flares out slightly at the ends. Also the connector is cut all the way through at four points at the ends. These key features are not evident in any of the Molex slimstack range. <br> <br>The connectors I got (see stellatech link below) have the letters "K-J" and "24A1" stamped in the plastic on the underside if that's any help. </div> </div> <div id="IDCommentBottom311635771" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311635771"> </div> <div id="IDCommentPostReplyLink311635771"> <a class="idc-btn_s" href="javascript: showReply(311635771)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311635771" class="idc-thread"></div></div></div><div class="idc-thread" id="IDTrackback27090271"> <div class="idc-tb"> <p class="idc-tb-title"><a href="http://farasbee.com/blog/2012/03/08/microcontroller-lcd-interface/">Adding a High Resolution Colour LCD to your own Electronics Project! | farasbee Blog</a></p> <div class="idc-tb-t"> [...] pixels until the rectangle is filled. This is the approach taken by many of the algorithms in the&nbsp;stm32plus&nbsp;graphics [...] </div> <div class="idc-tb-b"> <div class="idc-right" id="IDTrackBackDeleteLink27090271"> </div> <span class="idc-clear"></span> </div> </div></div>	<div class="idc-thread" id="IDThread311503634"><div id="IDComment311503634" class="idc-c idc-anonymous "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311503634">0</span> <a class="idc-v-up" href="javascript: voteComment(311503634, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311503634, 0)"><span>Vote down</span></a> </div> <span class="idc-a"><img alt="Dale&#39;s avatar" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/5fec7fb240a0b09982d4ad75026c6549" height="26" width="26" class="idc-avatar"> </span> <p class="idc-i"> <span> Dale </span> <em class="idc-time">· <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311503634" id="IDCommentTime311503634" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311503634" class="idc-c-t"> <div id="IDComment-CommentText311503634" class="idc-c-t-inner"> Any hints on where you found the Nokia Connector? Searching for "C-2730" hasn't helped. </div> </div> <div id="IDCommentBottom311503634" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311503634"> </div> <div id="IDCommentPostReplyLink311503634"> <a class="idc-btn_s" href="javascript: showReply(311503634)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <a href="javascript: collapseThread(311503634);" id="IDCommentCollapseLink311503634" class="idc-collapselink">2 replies </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime311503634" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311503634" class="idc-thread"><div id="IDComment311624135" class="idc-c idc-admin "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu311624135" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(311624135);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311624135">+1</span> <a class="idc-v-up" href="javascript: voteComment(311624135, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311624135, 0)"><span>Vote down</span></a> </div> <a href="http://www.andybrown.me.uk/" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu311624135&#39;, 1935698)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/7538185d1176416336357a4038f34dbb" class="idc-avatar" alt="Andy Brown&#39;s avatar - Go to profile"> </a> <p class="idc-i"> <a href="http://www.andybrown.me.uk/">Andy Brown</a> <span class="idc-rep idc-level1" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(311624135);">28p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311624135" id="IDCommentTime311624135" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311624135" class="idc-c-t"> <div id="IDComment-CommentText311624135" class="idc-c-t-inner"> The original place doesn't seem to stock it any more. Here's another source: <br> <a href="http://stellatech.com/nokia-6120c-6300-6301-8600-lcd-connector,a,en,303133.html" target="_blank">http://stellatech.com/nokia-6120c-6300-6301-8600-...</a> <br> <br>The 6300 and 2730 share the same connector - I know that for certain because I've got a 6300 LCD sitting on my desk waiting to be hacked in a future article! </div> </div> <div id="IDCommentBottom311624135" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311624135"> </div> <div id="IDCommentPostReplyLink311624135"> <a class="idc-btn_s" href="javascript: showReply(311624135)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311624135" class="idc-thread"><div id="IDComment311642021" class="idc-c "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu311642021" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(311642021);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311642021">+1</span> <a class="idc-v-up" href="javascript: voteComment(311642021, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311642021, 0)"><span>Vote down</span></a> </div> <a href="http://intensedebate.com/profiles/atomsoft" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu311642021&#39;, 1148077)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/81e2c1ad9d4270438ca77c9a7ac133ba" class="idc-avatar" alt="atomsoft&#39;s avatar - Go to profile"> <img class="idc-a-facebook" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/wordpress-favicon.ico" width="16" height="16"></a> <p class="idc-i"> <a href="http://intensedebate.com/profiles/atomsoft">atomsoft</a> <span class="idc-rep idc-level0" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(311642021);">2p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311642021" id="IDCommentTime311642021" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311642021" class="idc-c-t"> <div id="IDComment-CommentText311642021" class="idc-c-t-inner"> ah ok cool, ill look more. Thanks </div> </div> <div id="IDCommentBottom311642021" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311642021"> </div> <div id="IDCommentPostReplyLink311642021"> <a class="idc-btn_s" href="javascript: showReply(311642021)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311642021" class="idc-thread"></div></div></div></div>	<div class="idc-thread" id="IDThread311514410"><div id="IDComment311514410" class="idc-c idc-anonymous "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311514410">0</span> <a class="idc-v-up" href="javascript: voteComment(311514410, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311514410, 0)"><span>Vote down</span></a> </div> <span class="idc-a"><img alt="nordpol&#39;s avatar" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/2c6f7369411990304cb5c38a55866f6e" height="26" width="26" class="idc-avatar"> </span> <p class="idc-i"> <span> nordpol </span> <em class="idc-time">· <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311514410" id="IDCommentTime311514410" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311514410" class="idc-c-t"> <div id="IDComment-CommentText311514410" class="idc-c-t-inner"> Wow, thanks for the great research. I´am going to buy the monitor for a project. :)<br> <br>Is there anyway to donate? </div> </div> <div id="IDCommentBottom311514410" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311514410"> </div> <div id="IDCommentPostReplyLink311514410"> <a class="idc-btn_s" href="javascript: showReply(311514410)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <a href="javascript: collapseThread(311514410);" id="IDCommentCollapseLink311514410" class="idc-collapselink">1 reply </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime311514410" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311514410" class="idc-thread"><div id="IDComment312497992" class="idc-c idc-admin "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu312497992" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(312497992);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore312497992">+1</span> <a class="idc-v-up" href="javascript: voteComment(312497992, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(312497992, 0)"><span>Vote down</span></a> </div> <a href="http://www.andybrown.me.uk/" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu312497992&#39;, 1935698)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/7538185d1176416336357a4038f34dbb" class="idc-avatar" alt="Andy Brown&#39;s avatar - Go to profile"> </a> <p class="idc-i"> <a href="http://www.andybrown.me.uk/">Andy Brown</a> <span class="idc-rep idc-level1" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(312497992);">28p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment312497992" id="IDCommentTime312497992" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop312497992" class="idc-c-t"> <div id="IDComment-CommentText312497992" class="idc-c-t-inner"> Although I do sell off surplus boards resulting from a project as a way of covering costs and helping to fund future projects I don't do this for any other reason than to advance the knowledge of the community as a whole. So it would make me feel great if you donated a few dollars to whatever charity means the most to you and your family. </div> </div> <div id="IDCommentBottom312497992" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight312497992"> </div> <div id="IDCommentPostReplyLink312497992"> <a class="idc-btn_s" href="javascript: showReply(312497992)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread312497992" class="idc-thread"></div></div></div>	<div class="idc-thread" id="IDThread311761272"><div id="IDComment311761272" class="idc-c idc-anonymous "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore311761272">0</span> <a class="idc-v-up" href="javascript: voteComment(311761272, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(311761272, 0)"><span>Vote down</span></a> </div> <a href="http://ketturi.dy.fi/" class="idc-a"><img alt="&#39;s avatar - Go to profile" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/f0d0b452d8f5fcc20812c99e75a68e11" height="26" width="26" class="idc-avatar"> </a> <p class="idc-i"> <a href="http://ketturi.dy.fi/"> Ketturi </a> <em class="idc-time">· <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment311761272" id="IDCommentTime311761272" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop311761272" class="idc-c-t"> <div id="IDComment-CommentText311761272" class="idc-c-t-inner"> Great work. It's amazing how cheap something as advanced as this is todays. I have worked bigger lvds interfaced LCDs, but these cheap n' small mass produced displays could be handy in small non-computer based projects. I have pile of old mobilephone LCDs from Nokia N95 and 3500 etc, and have also some LG and samsung screens, so someday I might try reverse engineer them because now I know that it's possible, </div> </div> <div id="IDCommentBottom311761272" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight311761272"> </div> <div id="IDCommentPostReplyLink311761272"> <a class="idc-btn_s" href="javascript: showReply(311761272)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span style="display: none" id="IDCommentCollapseLinkWrapper311761272"><a href="javascript: collapseThread(311761272);" id="IDCommentCollapseLink311761272" class="idc-collapselink">0 replies </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime311761272" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em></span> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread311761272" class="idc-thread"></div></div><div class="idc-thread" id="IDTrackback27120851"> <div class="idc-tb"> <p class="idc-tb-title"><a href="http://cisforcomputers.com/?p=9792">Reverse engineering a Nokia LCD | CisforComputers</a></p> <div class="idc-tb-t"> [...] have been a staple of the hardware makers&nbsp;for years now, so we’re very happy to see [Andy] reverse engineering a full color QVGA display&nbsp;so we can move our grayscale projects over to a full-color [...] </div> <div class="idc-tb-b"> <div class="idc-right" id="IDTrackBackDeleteLink27120851"> </div> <span class="idc-clear"></span> </div> </div></div>	<div class="idc-thread" id="IDThread312025600"><div id="IDComment312025600" class="idc-c idc-anonymous "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore312025600">0</span> <a class="idc-v-up" href="javascript: voteComment(312025600, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(312025600, 0)"><span>Vote down</span></a> </div> <span class="idc-a"><img alt="Shank&#39;s avatar" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/9bc0bb85f38131bf5b0adc3f8e7ce1ee" height="26" width="26" class="idc-avatar"> </span> <p class="idc-i"> <span> Shank </span> <em class="idc-time">· <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment312025600" id="IDCommentTime312025600" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop312025600" class="idc-c-t"> <div id="IDComment-CommentText312025600" class="idc-c-t-inner"> Amazing work !!! Very impressive. Really liked your approach of systematic engineering <br>Thank you !!! </div> </div> <div id="IDCommentBottom312025600" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight312025600"> </div> <div id="IDCommentPostReplyLink312025600"> <a class="idc-btn_s" href="javascript: showReply(312025600)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span style="display: none" id="IDCommentCollapseLinkWrapper312025600"><a href="javascript: collapseThread(312025600);" id="IDCommentCollapseLink312025600" class="idc-collapselink">0 replies </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime312025600" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em></span> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread312025600" class="idc-thread"></div></div>	<div class="idc-thread" id="IDThread312072844"><div id="IDComment312072844" class="idc-c "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu312072844" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(312072844);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore312072844">+1</span> <a class="idc-v-up" href="javascript: voteComment(312072844, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(312072844, 0)"><span>Vote down</span></a> </div> <a href="http://intensedebate.com/profiles/mixup2010" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu312072844&#39;, 4110722)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/3e56b5b6a2c2574c166a446e8f700eff" class="idc-avatar" alt="mixup2010&#39;s avatar - Go to profile"> <img class="idc-a-facebook" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/wordpress-favicon.ico" width="16" height="16"></a> <p class="idc-i"> <a href="http://intensedebate.com/profiles/mixup2010">mixup2010</a> <span class="idc-rep idc-level0" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(312072844);">2p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment312072844" id="IDCommentTime312072844" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop312072844" class="idc-c-t"> <div id="IDComment-CommentText312072844" class="idc-c-t-inner"> Hey what was the dev board you used in the video? </div> </div> <div id="IDCommentBottom312072844" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight312072844"> </div> <div id="IDCommentPostReplyLink312072844"> <a class="idc-btn_s" href="javascript: showReply(312072844)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <a href="javascript: collapseThread(312072844);" id="IDCommentCollapseLink312072844" class="idc-collapselink">1 reply </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime312072844" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread312072844" class="idc-thread"><div id="IDComment312496108" class="idc-c idc-admin "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu312496108" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(312496108);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore312496108">+1</span> <a class="idc-v-up" href="javascript: voteComment(312496108, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(312496108, 0)"><span>Vote down</span></a> </div> <a href="http://www.andybrown.me.uk/" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu312496108&#39;, 1935698)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/7538185d1176416336357a4038f34dbb" class="idc-avatar" alt="Andy Brown&#39;s avatar - Go to profile"> </a> <p class="idc-i"> <a href="http://www.andybrown.me.uk/">Andy Brown</a> <span class="idc-rep idc-level1" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(312496108);">28p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment312496108" id="IDCommentTime312496108" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop312496108" class="idc-c-t"> <div id="IDComment-CommentText312496108" class="idc-c-t-inner"> It's the one I created in the post on this page :) </div> </div> <div id="IDCommentBottom312496108" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight312496108"> </div> <div id="IDCommentPostReplyLink312496108"> <a class="idc-btn_s" href="javascript: showReply(312496108)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread312496108" class="idc-thread"></div></div></div>	<div class="idc-thread" id="IDThread312189121"><div id="IDComment312189121" class="idc-c idc-anonymous "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore312189121">0</span> <a class="idc-v-up" href="javascript: voteComment(312189121, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(312189121, 0)"><span>Vote down</span></a> </div> <span class="idc-a"><img alt="Keith in the US&#39;s avatar" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/6e89334dc4edeed468d364602347764c" height="26" width="26" class="idc-avatar"> </span> <p class="idc-i"> <span> Keith in the US </span> <em class="idc-time">· <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment312189121" id="IDCommentTime312189121" class="IDCommentTime">8 weeks ago</a></em> </p> </div></div> <div id="IDCommentTop312189121" class="idc-c-t"> <div id="IDComment-CommentText312189121" class="idc-c-t-inner"> Thanks so much for your post. I have been wondering for years how I could reuse some of these lcds from old smartphones laying around for other projects. I am looking forward to really spending more time reading your project details and see if I could reuse this for my projects. </div> </div> <div id="IDCommentBottom312189121" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight312189121"> </div> <div id="IDCommentPostReplyLink312189121"> <a class="idc-btn_s" href="javascript: showReply(312189121)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span style="display: none" id="IDCommentCollapseLinkWrapper312189121"><a href="javascript: collapseThread(312189121);" id="IDCommentCollapseLink312189121" class="idc-collapselink">0 replies </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime312189121" class="IDCommentThreadTimeRead">active 8 weeks ago</span></em></span> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread312189121" class="idc-thread"></div></div>	<div class="idc-thread" id="IDThread348910400"><div id="IDComment348910400" class="idc-c idc-anonymous "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore348910400">0</span> <a class="idc-v-up" href="javascript: voteComment(348910400, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(348910400, 0)"><span>Vote down</span></a> </div> <a href="http://feed.informer.com/forums/profile.php?id=545641" class="idc-a"><img alt="&#39;s avatar - Go to profile" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/1cefc5fd4b33aec778d3020e4921e390" height="26" width="26" class="idc-avatar"> </a> <p class="idc-i"> <a href="http://feed.informer.com/forums/profile.php?id=545641"> Dian Ficorilli </a> <em class="idc-time">· <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment348910400" id="IDCommentTime348910400" class="IDCommentTime">1 week ago</a></em> </p> </div></div> <div id="IDCommentTop348910400" class="idc-c-t"> <div id="IDComment-CommentText348910400" class="idc-c-t-inner"> I just could not leave your web site prior to suggesting that I extremely loved the usual info an individual provide on your visitors? Is gonna be back often to check out new posts </div> </div> <div id="IDCommentBottom348910400" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight348910400"> </div> <div id="IDCommentPostReplyLink348910400"> <a class="idc-btn_s" href="javascript: showReply(348910400)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <a href="javascript: collapseThread(348910400);" id="IDCommentCollapseLink348910400" class="idc-collapselink">1 reply </a> <em class="idc-thread_active">· <span id="IDCommentThreadTime348910400" class="IDCommentThreadTimeRead">active 1 week ago</span></em> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread348910400" class="idc-thread"><div id="IDComment349019427" class="idc-c idc-admin "><div class="idc-c-h"> <div class="idc-c-h-inner"> <div class="idc-m" id="IDUserMenu349019427" onmouseover="clearTimeout( IDC.popupMenuTimeout );" onmouseout="IDC.popupMenuTimeout = setTimeout( &#39;IDC.user_menu.hide(349019427);&#39;, 250 );"> <div class="idc-m-avatar idc-m-avatar-loading"> <img alt="Loading..." src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/idc-m-loading.gif" class="idc-m-loadingimg"> </div> </div> <div class="idc-v"> <span class="idc-v-total" id="IDCommentVoteScore349019427">+1</span> <a class="idc-v-up" href="javascript: voteComment(349019427, 1)"><span>Vote up</span></a> <a class="idc-v-down" href="javascript: voteComment(349019427, 0)"><span>Vote down</span></a> </div> <a href="http://www.andybrown.me.uk/" class="idc-a" onmouseover="IDC.user_menu.show(&#39;IDUserMenu349019427&#39;, 1935698)"><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/7538185d1176416336357a4038f34dbb" class="idc-avatar" alt="Andy Brown&#39;s avatar - Go to profile"> </a> <p class="idc-i"> <a href="http://www.andybrown.me.uk/">Andy Brown</a> <span class="idc-rep idc-level1" title="User&#39;s reputation score. The better commenter, the greater number."><span></span><span class="idc-r" onclick="showReputationWhy(349019427);">28p</span></span> <em class="idc-time"> ·  <a title="Comment Permalink" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#IDComment349019427" id="IDCommentTime349019427" class="IDCommentTime">1 week ago</a></em> </p> </div></div> <div id="IDCommentTop349019427" class="idc-c-t"> <div id="IDComment-CommentText349019427" class="idc-c-t-inner"> --- </div> </div> <div id="IDCommentBottom349019427" class="idc-c-b"> <div class="idc-right" id="IDCommentLinksRight349019427"> </div> <div id="IDCommentPostReplyLink349019427"> <a class="idc-btn_s" href="javascript: showReply(349019427)"><span><input type="hidden" id="reqUsersOn" value="no"></span><span class="idc-r">Reply</span></a> </div> <span class="idc-clear"></span> </div> </div><div id="IDCommentSubThread349019427" class="idc-thread"></div></div></div></div>	<div id="IDCommentsNewThreadCover" class="idc-new"> <a name="respond"></a> <h3>Post a new comment</h3> <div class="idc-thread" id="IDCThread"> <div style="width: 100%;" id="IDCommentsNewThread" class="idc-c idc-reply idc-anonymous idc-signup"> <div class="idc-c-h" id="IDCommentsNewThreadHeader" style="display: none;"> <div class="idc-right" id="IDCommentsNewThreadHeaderRight"> <div class="idc-expand"></div> </div> </div> <ul class="idc-c-plugins" id="idc-plugin-buttons-new-thread"></ul> <div class="idc-c-t"> <form id="IDCommentNewThreadForm1"> <div class="idc-c-t-inner"> <textarea class="idc-text_noresize" style="color: rgb(204, 204, 204); width: 499px; " id="IDCommentNewThreadText" onfocus="txtOnFocus(this, &#39;Enter text right here!&#39;);" onblur="txtOnBlur(this, &#39;Enter text right here!&#39;);">Enter text right here!</textarea> <span class="idc-clear"> </span></div> </form> </div> <div class="idc-postnav" id="IDCPostNav"> <p id="IDCNavGuest2" style="display: inline;" class="idc-postnav-label"><span>Comment as a Guest, or login:</span></p> <ul class="idc-postnav-list" id="IDCNavList"> <li class="idc-first"><a href="javascript: showLogin();" class="idc-loginbtn_intensedebate">Login to IntenseDebate</a></li> <li class="idc-first"><a href="javascript: showWPLogin();" class="idc-loginbtn_wordpress">Login to WordPress.com</a></li> <li><a href="javascript: IDC.twitter.load_popup();" class="idc-loginbtn_twitter">Login to Twitter</a></li> <li><a href="javascript: IDCNav('IDCNavOpenID'); showSignupOpenIDNewThread();" id="IDCNavOpenID" class="idc-loginbtn_openid">Login to OpenID</a></li> </ul> <a href="javascript: IDCNavReply('IDCNavGuest'); showSignupNewThread(); id_fbStopPoll(); id_show_nav();" id="IDCNavGuest" style="display:none;margin:2px 0;line-height:21px;">Go back</a> </div> <div class="idc-c-m idc-twitter_loggedin"> <div class="idc-userbar"> <p class="idc-right"><label for="IDNewThreadTweetThis-tw" style="display:inline; line-height:28px;" class="idc-nofloat"><input type="checkbox" id="IDNewThreadTweetThis-tw"> Tweet this comment</label></p> <a class="idc-a_nomenu"><img id="id_twAvatar_NewThread" src="" class="idc-avatar" width="26" height="26"><img id="id_twAvatar_NewThread-fav" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/twitter-favicon.ico" style="margin: 13px 0 -1px -5px; width: 16px; height: 16px;" width="16" height="16" alt="Twitter"></a> <p class="idc-userbar-i"> Connected as <a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#" id="id_twName_NewThread" class="snap_noshots"></a> (<a href="http://intensedebate.com/twitter-logout.php" class="snap_noshots">Logout</a>) </p> </div> <div class="idc-column-wide"> <label for="txtEmailNewThreadTW">Email (optional)</label> <input type="text" id="txtEmailNewThreadTW" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p></p> <p class="idc-form-info">Not displayed publicly.</p> </div> </div> <div class="idc-c-m idc-signup"> <form id="IDCommentNewThreadForm2"> <div style="width: 100%;"> <div class="idc-columns"> <div class="idc-column" id="IDCColumnNameLabel"> <label for="txtNameNewThread">Name</label> </div> <div class="idc-column" id="IDCColumnEmailLabel"> <label for="txtEmailNewThread">Email</label> </div> <div class="idc-column" id="IDCColumnURLLabel"> <label for="txtURLNewThread">Website (optional)</label> </div> <span class="idc-clear"></span> </div> <div class="idc-column" id="IDCColumnName"> <input type="text" id="txtNameNewThread" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p class="idc-form-info">Displayed next to your comments.</p> </div> <div class="idc-column" id="IDCColumnEmailReply"> <input type="text" id="txtEmailNewThread" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p class="idc-form-info">Not displayed publicly.</p> </div> <div class="idc-column" id="IDCColumnURL"> <input type="text" class="idc-text" id="txtURLNewThread" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p class="idc-form-info">If you have a website, link to it here.</p> </div> </div> </form> </div> <div class="idc-c-m idc-openid_signup"> <div style="width: 100%;"> <form id="IDCommentsOpenIDSignupNewThread" action="http://intensedebate.com/openIDComments.php" method="get"> <input id="IDCommentsOpenIDSignupNewThreadComment" style="display: none;" name="comment" type="hidden"> <input id="IDCommentsOpenIDSignupNewThreadParentid" style="display: none;" name="parentid" type="hidden"> <input id="IDCommentsOpenIDSignupNewThreadType" style="display: none;" name="type" value="4" type="hidden"> <input id="IDCommentsOpenIDSignupNewThreadSrc" style="display: none;" name="src" value="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/" type="hidden"> <input id="IDCommentsOpenIDSignupNewThreadBlogpostid" style="display: none;" name="blogpostid" value="123823692" type="hidden"> <div class="idc-column-wide"> <label for="txtOpenIDSignupNewThreadURL">OpenID URL</label> <input id="txtOpenIDSignupNewThreadURL" name="openid" class="idc-text" value="http://" onfocus="txtOnFocus(this, &#39;&#39;, false);" onblur="txtOnBlur(this, &#39;&#39;, false);" type="text"> <p class="idc-form-info">Comment as a Guest or <a href="javascript:showLoginOpenID();">login</a> using OpenID</p> </div> </form> </div> </div> <p id="IDCommentsNewThreadListItem1" style="display:none;">Posting anonymously.</p> <p id="IDNewThreadTweetThisWrapper" style="display:none"><label for="IDNewThreadTweetThis" class="idc-nofloat"><input type="checkbox" id="IDNewThreadTweetThis"> Tweet this comment</label></p> <div class="idc-c-b"> <div class="idc-right" id="IDNewThreadSubmitLI"> <a class="idc-btn_l" href="javascript: postComment(0);"><span></span><span class="idc-r"><strong>Submit Comment</strong></span></a> </div> <div class="idc-new_subscribe" id="IDSubscribeToThisWrapper"> <!--<input type="checkbox" id="IDSubscribeToThis" class="idc-chk" />--> <label for="IDSubscribeToThis" class="idc-nofloat"> Subscribe to <select id="IDSubscribeToThis" name="IDSubscribeToThis"> <option value="-1" id="IDSubscribeToThis-def">None</option> <option value="1" id="IDSubscribeToThis-replies">Replies</option> <option value="0">All new comments</option> </select> </label> </div> <div class="idc-customtext"> <span id="customText"></span> </div> <span class="idc-clear"></span> </div> </div> </div> </div> <div class="idc-foot"> <p class="idc-id"><span>Comments by </span><a href="http://intensedebate.com/" class="idc-idlogo" target="_blank">IntenseDebate</a></p> <span class="idc-clear"></span> </div><div id="divReplyExpandingText" class="idc-measure"></div><div id="divNewPostExpandingText" class="idc-measure"></div><div style="display: none; " class="idc-c idc-reply idc-anonymous idc-signup" id="IDCommentReplyDiv"><p class="idc-header" id="IDCommentReplyName"></p> <ul class="idc-c-plugins" id="idc-plugin-buttons-reply"></ul> <div class="idc-c-t"> <div class="idc-c-t-inner"> <form id="IDCommentReplyForm1"> <textarea id="txtComment" class="idc-text_noresize" onfocus="txtOnFocus(this, &#39;Enter text right here!&#39;);" onblur="txtOnBlur(this, &#39;Enter text right here!&#39;);">Enter text right here!</textarea> </form> <span class="idc-clear"> </span></div> </div> <div class="idc-postnav" id="IDCPostNavReply"> <p id="IDCNavGuestReply2" style="display: inline;" class="idc-postnav-label"><span>Reply as a Guest, or login:</span></p> <ul class="idc-postnav-list" id="IDCNavListReply"> <li class="idc-first"><a href="javascript: showLogin();" class="idc-loginbtn_intensedebate">Login to IntenseDebate</a></li> <li class="idc-first"><a href="javascript: showWPLogin();" class="idc-loginbtn_wordpress">Login to WordPress.com</a></li> <li><a href="javascript: IDC.twitter.load_popup();" class="idc-loginbtn_twitter">Login to Twitter</a></li> <li><a href="javascript: IDCNavReply('IDCNavOpenIDReply'); showSignupOpenIDReply();" id="IDCNavOpenIDReply" class="idc-loginbtn_openid">Login to OpenID</a></li> </ul> <a href="javascript: IDCNavReply('IDCNavGuestReply'); showSignupReply(); id_fbStopPoll(); id_show_nav();" id="IDCNavGuestReply" style="display:none;margin:2px 0;line-height:21px;">Go back</a> </div> <div class="idc-c-m idc-twitter_loggedin"> <div class="idc-userbar"> <p class="idc-right"><label for="IDReplyTweetThis-tw" style="display:inline; line-height: 28px;" class="idc-nofloat"><input type="checkbox" id="IDReplyTweetThis-tw"> Tweet this comment</label></p> <a class="idc-a_nomenu"><img id="id_twAvatar_Reply" src="" class="idc-avatar" width="26" height="26"><img id="id_twAvatar_Reply-fav" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/twitter-favicon.ico" style="margin: 13px 0 -1px -5px; width: 16px; height: 16px;" width="16" height="16" alt="Twitter"></a> <p class="idc-userbar-i">Connected as <a href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#" class="snap_noshots" id="id_twName_Reply"></a> (<a href="http://intensedebate.com/twitter-logout.php" class="snap_noshots">Logout</a>)</p> </div> <div class="idc-column-wide"> <label for="txtEmailReplyTW">Email (optional)</label> <input type="text" id="txtEmailReplyTW" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p class="idc-form-info">Not displayed publicly.</p> </div> </div> <div class="idc-c-m idc-signup" id="IDCommentReplyOuterDiv"> <form id="IDCommentReplyForm2"> <div style="width: 100%;" id="IDCommentReplyInnerDiv"> <div class="idc-columns"> <div class="idc-column" id="IDCColumnNameReplyLabel"> <label for="txtNameReply">Name</label> </div> <div class="idc-column" id="IDCColumnEmailReplyLabel"> <label for="txtEmailReply">Email</label> </div> <div class="idc-column" id="IDCColumnURLReplyLabel"> <label for="txtURLReply">Website (optional)</label> </div> <span class="idc-clear"></span> </div> <div class="idc-column" id="IDCColumnNameReply"> <input type="text" id="txtNameReply" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p class="idc-form-info">Displayed next to your comments.</p> </div> <div class="idc-column" id="IDCColumnEmailReply"> <input type="text" id="txtEmailReply" class="idc-text" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p class="idc-form-info">Not displayed publicly.</p> </div> <div class="idc-column" id="IDCColumnURLReply"> <input type="text" class="idc-text" id="txtURLReply" onfocus="txtOnFocus(this, &#39;&#39;);" onblur="txtOnBlur(this, &#39;&#39;);"> <p class="idc-form-info">If you have a website, link to it here.</p> </div> </div> </form> </div> <div class="idc-c-m idc-openid_signup"> <div id="IDCommentsOpenIDReplyInnerDiv"> <form id="IDCommentsOpenIDSignupReply" action="http://intensedebate.com/openIDComments.php" method="get"> <input id="IDCommentsOpenIDSignupReplyComment" style="display: none;" name="comment" type="hidden"> <input id="IDCommentsOpenIDSignupReplyParentid" style="display: none;" name="parentid" type="hidden"> <input id="IDCommentsOpenIDSignupReplyType" style="display: none;" name="type" value="4" type="hidden"> <input id="IDCommentsOpenIDSignupReplySrc" style="display: none;" name="src" value="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/" type="hidden"> <input id="IDCommentsOpenIDSignupReplyBlogpostid" style="display: none;" name="blogpostid" value="123823692" type="hidden"> <div class="idc-column-wide"> <label for="txtOpenIDSignupReplyURL">OpenID URL</label> <input id="txtOpenIDSignupReplyURL" name="openid" class="idc-text" value="http://" onfocus="txtOnFocus(this, &#39;http://&#39;, false);" onblur="txtOnBlur(this, &#39;http://&#39;);" type="text"> <p class="idc-form-info">Comment as a Guest or <a href="javascript:showLoginOpenID();">login</a> using OpenID</p> </div> </form> </div> </div> <p id="IDCommentReplyListItem1" style="display:none;">Posting anonymously.</p> <p id="IDReplyTweetThisWrapper" style="display:none"><label for="IDReplyTweetThis" class="idc-nofloat"><input type="checkbox" id="IDReplyTweetThis"> Tweet this comment</label></p> <div class="idc-c-b"> <div class="idc-right" id="IDReplyDivSubmitLI"> <a href="javascript: hideReply();" class="idc-btn_l-secondary"><span></span><span class="idc-r">Cancel</span></a> <a id="IDReplyDivSubmitLIButton" class="idc-btn_l" href="javascript: postComment(1);"><span></span><span class="idc-r"><strong>Submit Comment</strong></span></a> </div> <div class="idc-new_subscribe" id="IDSubscribeToThisWrapperReply"> <!--<input type="checkbox" id="IDSubscribeToThisReply" class="idc-chk" />--> <label for="IDSubscribeToThisReply" class="idc-nofloat"> Subscribe to <select id="IDSubscribeToThisReply" name="IDSubscribeToThisReply"> <option value="-1" id="IDSubscribeToThisReply-def">None</option> <option value="1" id="IDSubscribeToThisReply-replies">Replies</option> <option value="0">All new comments</option> </select> </label> </div> <span class="idc-clear"></span> </div></div><iframe src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/empty.htm" style="display: none; "></iframe><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/remoteCheckin.php" style="display: none; "></div><span id="idc-clear"></span></div>
+          </div>
+        </div>
+        <div class="entry-bottom-top"></div>
+        <div class="entry-bottom"></div>
+      </div>
+    </div>
+
+	<div id="idc-loading-comments" style="vertical-align: middle; display: none; "><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/loading.gif" alt="Loading" border="0" align="absmiddle"> Loading IntenseDebate Comments...</div><div id="idc-noscript" style="display: none; ">
+		
+	<div class="entry post clearfix">
+		<div class="entry-content">
+			<div class="entry comment-icon">
+				<div class="entry-top"></div>
+					<div class="post clearfix">
+						<div class="content clearfix">
+							<span class="bubble"></span>
+		
+							<div id="comment-section" class="nocomments">
+											<!-- If comments are open, but there are no comments. -->
+						
+									</div>
+			
+			
+				<div id="respond">
+				
+					<h3 id="comments"><cufon class="cufon cufon-canvas" alt="Leave " style="width: 70px; height: 40px; "><canvas width="97" height="48" style="width: 97px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>Leave </cufontext></cufon><cufon class="cufon cufon-canvas" alt="a " style="width: 20px; height: 40px; "><canvas width="48" height="48" style="width: 48px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>a </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Reply" style="width: 61px; height: 40px; "><canvas width="83" height="48" style="width: 83px; height: 48px; top: -8px; left: -1px; "></canvas><cufontext>Reply</cufontext></cufon></h3>
+					<div class="cancel-comment-reply"> <small>
+						<a rel="nofollow" id="cancel-comment-reply-link" href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/#respond" style="display:none;">Click here to cancel reply.</a>						</small> </div> <!-- end cancel-comment-reply div -->
+					
+											<form action="http://andybrown.me.uk/ws/wp-comments-post.php" method="post" id="commentform">
+													<p>
+								<input type="text" name="author" id="author" value="" size="22" tabindex="1" aria-required="true">
+								<label for="author"><small>Name									(required)									</small></label>
+							</p>
+							<p>
+								<input type="text" name="email" id="email" value="" size="22" tabindex="2" aria-required="true">
+								<label for="email"><small>Mail (will not be published)									(required)									</small></label>
+							</p>
+							<p>
+								<input type="text" name="url" id="url" value="" size="22" tabindex="3">
+								<label for="url"><small>Website</small></label>
+							</p>
+												<!--<p><small><strong>XHTML:</strong> You can use these tags: <code>&lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </code></small></p>-->
+						<p>
+							<textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea>
+						</p>
+						<p>
+							<input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment">
+							<input type="hidden" name="comment_post_ID" value="1417" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="3c787f42e7"></p>						</form>
+										
+				</div> <!-- end respond div -->
+				
+					
+		</div>
+		</div>
+		</div>
+		
+		</div> <!-- end .entry-content -->
+					
+	</div> <!-- end .entry -->
+	</div>
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	var idc_xd_receiver = '/ws/wp-content/plugins/intensedebate/xd_receiver.htm';
+	function IDC_revert() { document.getElementById('idc-loading-comments').style.display='none'; if ( !document.getElementById('IDCommentsHead') ) { document.getElementById('idc-noscript').style.display='block'; document.getElementById('idc-comment-wrap-js').parentNode.removeChild(document.getElementById('idc-comment-wrap-js')); } else { document.getElementById('idc-noscript').style.display='none'; } }
+	idc_ns = document.getElementById('idc-noscript');
+	idc_ns.style.display='none'; idc_ld = document.createElement('div');
+	idc_ld.id = 'idc-loading-comments'; idc_ld.style.verticalAlign='middle';
+	idc_ld.innerHTML = "<img src='http://andybrown.me.uk/ws/wp-content/plugins/intensedebate/loading.gif' alt='Loading' border='0' align='absmiddle' /> Loading IntenseDebate Comments...";
+	idc_ns.parentNode.insertBefore(idc_ld, idc_ns);
+	setTimeout( IDC_revert, 10000 );
+	/* ]]> */
+	</script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		var s = document.createElement("script"); s.type = "text/javascript"; s.id = 'idc-comment-wrap-js'; s.src = "http://intensedebate.com/js/wordpressTemplateCommentWrapper2.php?acct=aaf1cae00dfb32925a65eb7491e0af6e&postid=1417&title=Reverse+engineering+the+Nokia+2730+QVGA+LCD&url=http%3A%2F%2Fandybrown.me.uk%2Fws%2F2012%2F03%2F06%2Freverse-engineering-the-nokia-2730-qvga-lcd%2F&posttime=2012-03-06+20%3A08%3A10&postauthor=Andy&guid=http%3A%2F%2Fandybrown.me.uk%2Fws%2F%3Fp%3D1417"; document.getElementsByTagName("head")[0].appendChild(s);
+		/* ]]> */
+		</script>
+		
+	</div> <!-- end #main-area -->
+		
+	<div id="sidebar">				
+	<div class="widget search">
+	<form action="http://andybrown.me.uk/ws" id="searchform1" method="get">
+		<input type="text" id="searchinput" name="s" value="search this site...">
+		
+						<input type="image" id="searchsubmit" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/search_btn.png">
+	</form>
+</div> <!-- end .widget -->
+<div id="linkcat-2" class="widget widget_links"><h3 class="title"><cufon class="cufon cufon-canvas" alt="Links" style="width: 49px; height: 30px; "><canvas width="65" height="37" style="width: 65px; height: 37px; top: -7px; left: -2px; "></canvas><cufontext>Links</cufontext></cufon></h3><div class="widget-content">
+	<ul class="xoxo blogroll">
+<li><a href="https://twitter.com/#!/andyworkshop" rel="me" title="#andyworkshop" target="_blank" style="padding-left: 26px; ">Follow me on Twitter</a></li>
+<li><a href="http://www.foxbat.me.uk/" rel="me" title="Visit my nature photography site. It’s really cool. Honestly!" style="padding-left: 26px; ">foxbat:Photography</a></li>
+<li><a href="http://andybrown.me.uk/ws/comments/feed" title="Subscribe to comments posted on my blog" style="padding-left: 26px; ">Subscribe to comments</a></li>
+<li><a href="http://andybrown.me.uk/ws/feed" title="Subscribe to posts that I make on this blog" style="padding-left: 26px; ">Subscribe to posts</a></li>
+
+	</ul>
+</div> <!-- end .widget-content --> </div> <!-- end .widget -->
+<div id="categories-3" class="widget widget_categories"><h3 class="title"><cufon class="cufon cufon-canvas" alt="Categories" style="width: 99px; height: 30px; "><canvas width="115" height="37" style="width: 115px; height: 37px; top: -7px; left: -2px; "></canvas><cufontext>Categories</cufontext></cufon></h3><div class="widget-content">		<ul>
+	<li class="cat-item cat-item-71"><a href="http://andybrown.me.uk/ws/category/hardware-projects/arduino-512k-sram/" title="View all posts filed under Arduino 512K SRAM">Arduino 512K SRAM</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://andybrown.me.uk/ws/category/avrprogenv/arduino-specific/" title="Tips and tricks for programming the Arduino AVR implementation">Arduino specific</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://andybrown.me.uk/ws/category/avrprogenv/attiny/" title="Tips and tricks for programming the ATtiny range of microcontrollers.">ATtiny</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://andybrown.me.uk/ws/category/avrprogenv/" title="Tips for setting up a Windows programming environment for AVR development." style="padding-left: 26px; ">AVR programming</a>
+</li>
+	<li class="cat-item cat-item-64"><a href="http://andybrown.me.uk/ws/category/avrprogenv/eclipse-avrprogenv/" title="Setting up and using the popular Eclipse IDE" style="padding-left: 26px; ">Eclipse</a>
+</li>
+	<li class="cat-item cat-item-44"><a href="http://andybrown.me.uk/ws/category/hardware-projects/" title="View all posts filed under Hardware projects" style="padding-left: 26px; ">Hardware projects</a>
+</li>
+	<li class="cat-item cat-item-63"><a href="http://andybrown.me.uk/ws/category/hardware-projects/phototrap-hardware-projects/" title="Designing and building a multi-sensor phototrap for Canon cameras.">Phototrap</a>
+</li>
+	<li class="cat-item cat-item-68"><a href="http://andybrown.me.uk/ws/category/stm32-2/" title="View all posts filed under STM32">STM32</a>
+</li>
+	<li class="cat-item cat-item-72"><a href="http://andybrown.me.uk/ws/category/stm32-2/stm32plus/" title="View all posts filed under stm32plus" style="padding-left: 26px; ">stm32plus</a>
+</li>
+		</ul>
+</div> <!-- end .widget-content --> </div> <!-- end .widget -->		<div id="recent-posts-3" class="widget widget_recent_entries">		<h3 class="title"><cufon class="cufon cufon-canvas" alt="Recent " style="width: 67px; height: 30px; "><canvas width="89" height="37" style="width: 89px; height: 37px; top: -7px; left: -2px; "></canvas><cufontext>Recent </cufontext></cufon><cufon class="cufon cufon-canvas" alt="Posts" style="width: 52px; height: 30px; "><canvas width="68" height="37" style="width: 68px; height: 37px; top: -7px; left: -2px; "></canvas><cufontext>Posts</cufontext></cufon></h3><div class="widget-content">		<ul>
+				<li><a href="http://andybrown.me.uk/ws/2012/05/07/level-converter/" title="16 channel level converter with dual regulators">16 channel level converter with dual regulators</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2012/04/28/avr-gcc-4-7-0-and-avr-libc-1-8-0-compiled-for-windows/" title="avr-gcc 4.7.0 and avr-libc 1.8.0 compiled for Windows">avr-gcc 4.7.0 and avr-libc 1.8.0 compiled for Windows</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2012/04/09/stm32plus-ili9481-tft-driver/" title="stm32plus: ILI9481 TFT driver">stm32plus: ILI9481 TFT driver</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2012/03/31/stm32f4discovery/" title="stm32f4discovery: Up and running with the ARM Cortex M4">stm32f4discovery: Up and running with the ARM Cortex M4</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2012/03/24/stm32plus-fat32-fat16-drivers/" title="stm32plus: FAT32 &amp; FAT16 drivers">stm32plus: FAT32 &amp; FAT16 drivers</a></li>
+				<li><a href="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop.htm" title="Reverse engineering the Nokia 2730 QVGA LCD">Reverse engineering the Nokia 2730 QVGA LCD</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2012/02/19/photoframe/" title="stm32plus: A full photoframe application">stm32plus: A full photoframe application</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2012/01/07/stm32plus-ads7843-touch-screen-driver/" title="stm32plus: ADS7843 touch screen driver">stm32plus: ADS7843 touch screen driver</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2012/01/01/stm32plus-ili9325-tft-driver/" title="stm32plus: ILI9325 TFT driver">stm32plus: ILI9325 TFT driver</a></li>
+				<li><a href="http://andybrown.me.uk/ws/2011/12/28/stm32plus-hx8347a-tft-driver/" title="stm32plus: HX8347A TFT driver">stm32plus: HX8347A TFT driver</a></li>
+				</ul>
+		</div> <!-- end .widget-content --> </div> <!-- end .widget --><div id="tag_cloud-3" class="widget widget_tag_cloud"><h3 class="title"><cufon class="cufon cufon-canvas" alt="Tags" style="width: 42px; height: 30px; "><canvas width="58" height="37" style="width: 58px; height: 37px; top: -7px; left: -2px; "></canvas><cufontext>Tags</cufontext></cufon></h3><div class="widget-content"><div class="tagcloud"><a href="http://andybrown.me.uk/ws/tag/64-bit/" class="tag-link-37" title="1 topic" style="font-size: 8pt;">64 bit</a>
+<a href="http://andybrown.me.uk/ws/tag/animation/" class="tag-link-48" title="1 topic" style="font-size: 8pt;">animation</a>
+<a href="http://andybrown.me.uk/ws/tag/arduino/" class="tag-link-19" title="14 topics" style="font-size: 21.247311828pt;">arduino</a>
+<a href="http://andybrown.me.uk/ws/tag/arm/" class="tag-link-66" title="2 topics" style="font-size: 10.7096774194pt;">arm</a>
+<a href="http://andybrown.me.uk/ws/tag/atmega/" class="tag-link-32" title="7 topics" style="font-size: 17.0322580645pt;">atmega</a>
+<a href="http://andybrown.me.uk/ws/tag/atmega1280/" class="tag-link-28" title="2 topics" style="font-size: 10.7096774194pt;">atmega1280</a>
+<a href="http://andybrown.me.uk/ws/tag/atmega2560/" class="tag-link-29" title="1 topic" style="font-size: 8pt;">atmega2560</a>
+<a href="http://andybrown.me.uk/ws/tag/atmel/" class="tag-link-18" title="14 topics" style="font-size: 21.247311828pt;">atmel</a>
+<a href="http://andybrown.me.uk/ws/tag/attiny-2/" class="tag-link-11" title="3 topics" style="font-size: 12.5161290323pt;">attiny</a>
+<a href="http://andybrown.me.uk/ws/tag/attiny25/" class="tag-link-14" title="2 topics" style="font-size: 10.7096774194pt;">attiny25</a>
+<a href="http://andybrown.me.uk/ws/tag/attiny45/" class="tag-link-13" title="1 topic" style="font-size: 8pt;">attiny45</a>
+<a href="http://andybrown.me.uk/ws/tag/attiny85/" class="tag-link-12" title="2 topics" style="font-size: 10.7096774194pt;">attiny85</a>
+<a href="http://andybrown.me.uk/ws/tag/auto-repeat/" class="tag-link-43" title="1 topic" style="font-size: 8pt;">auto-repeat</a>
+<a href="http://andybrown.me.uk/ws/tag/avr/" class="tag-link-17" title="13 topics" style="font-size: 20.7956989247pt;">avr</a>
+<a href="http://andybrown.me.uk/ws/tag/avr-gcc/" class="tag-link-22" title="9 topics" style="font-size: 18.5376344086pt;">avr-gcc</a>
+<a href="http://andybrown.me.uk/ws/tag/avrgcc/" class="tag-link-21" title="7 topics" style="font-size: 17.0322580645pt;">avrgcc</a>
+<a href="http://andybrown.me.uk/ws/tag/backlight/" class="tag-link-45" title="1 topic" style="font-size: 8pt;">backlight</a>
+<a href="http://andybrown.me.uk/ws/tag/bug/" class="tag-link-25" title="1 topic" style="font-size: 8pt;">bug</a>
+<a href="http://andybrown.me.uk/ws/tag/button/" class="tag-link-40" title="1 topic" style="font-size: 8pt;">button</a>
+<a href="http://andybrown.me.uk/ws/tag/compiler/" class="tag-link-24" title="7 topics" style="font-size: 17.0322580645pt;">compiler</a>
+<a href="http://andybrown.me.uk/ws/tag/constructor/" class="tag-link-27" title="1 topic" style="font-size: 8pt;">constructor</a>
+<a href="http://andybrown.me.uk/ws/tag/contrast/" class="tag-link-46" title="1 topic" style="font-size: 8pt;">contrast</a>
+<a href="http://andybrown.me.uk/ws/tag/cortex/" class="tag-link-67" title="2 topics" style="font-size: 10.7096774194pt;">cortex</a>
+<a href="http://andybrown.me.uk/ws/tag/debounce/" class="tag-link-41" title="2 topics" style="font-size: 10.7096774194pt;">debounce</a>
+<a href="http://andybrown.me.uk/ws/tag/drivers/" class="tag-link-39" title="1 topic" style="font-size: 8pt;">drivers</a>
+<a href="http://andybrown.me.uk/ws/tag/easing/" class="tag-link-49" title="1 topic" style="font-size: 8pt;">easing</a>
+<a href="http://andybrown.me.uk/ws/tag/eclipse/" class="tag-link-23" title="8 topics" style="font-size: 17.7849462366pt;">eclipse</a>
+<a href="http://andybrown.me.uk/ws/tag/gcc/" class="tag-link-20" title="8 topics" style="font-size: 17.7849462366pt;">gcc</a>
+<a href="http://andybrown.me.uk/ws/tag/isp/" class="tag-link-35" title="2 topics" style="font-size: 10.7096774194pt;">isp</a>
+<a href="http://andybrown.me.uk/ws/tag/keyboard/" class="tag-link-42" title="1 topic" style="font-size: 8pt;">keyboard</a>
+<a href="http://andybrown.me.uk/ws/tag/led/" class="tag-link-47" title="1 topic" style="font-size: 8pt;">led</a>
+<a href="http://andybrown.me.uk/ws/tag/library/" class="tag-link-30" title="1 topic" style="font-size: 8pt;">library</a>
+<a href="http://andybrown.me.uk/ws/tag/malloc/" class="tag-link-52" title="1 topic" style="font-size: 8pt;">malloc</a>
+<a href="http://andybrown.me.uk/ws/tag/mcu/" class="tag-link-16" title="10 topics" style="font-size: 19.1397849462pt;">mcu</a>
+<a href="http://andybrown.me.uk/ws/tag/microcontroller/" class="tag-link-15" title="16 topics" style="font-size: 22pt;">microcontroller</a>
+<a href="http://andybrown.me.uk/ws/tag/optocoupler/" class="tag-link-51" title="1 topic" style="font-size: 8pt;">optocoupler</a>
+<a href="http://andybrown.me.uk/ws/tag/phototrap/" class="tag-link-50" title="3 topics" style="font-size: 12.5161290323pt;">phototrap</a>
+<a href="http://andybrown.me.uk/ws/tag/project/" class="tag-link-31" title="1 topic" style="font-size: 8pt;">project</a>
+<a href="http://andybrown.me.uk/ws/tag/r20/" class="tag-link-26" title="1 topic" style="font-size: 8pt;">r20</a>
+<a href="http://andybrown.me.uk/ws/tag/stm32/" class="tag-link-65" title="3 topics" style="font-size: 12.5161290323pt;">stm32</a>
+<a href="http://andybrown.me.uk/ws/tag/tft/" class="tag-link-60" title="2 topics" style="font-size: 10.7096774194pt;">TFT</a>
+<a href="http://andybrown.me.uk/ws/tag/usb/" class="tag-link-34" title="1 topic" style="font-size: 8pt;">usb</a>
+<a href="http://andybrown.me.uk/ws/tag/usbasp/" class="tag-link-33" title="1 topic" style="font-size: 8pt;">usbasp</a>
+<a href="http://andybrown.me.uk/ws/tag/windows/" class="tag-link-36" title="1 topic" style="font-size: 8pt;">windows</a>
+<a href="http://andybrown.me.uk/ws/tag/x64/" class="tag-link-38" title="1 topic" style="font-size: 8pt;">x64</a></div>
+</div> <!-- end .widget-content --> </div> <!-- end .widget --></div> <!-- end #sidebar -->			
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		var s = document.createElement("script"); s.type = "text/javascript"; s.src = "http://intensedebate.com/js/wordpressTemplateLinkWrapper2.php?acct=aaf1cae00dfb32925a65eb7491e0af6e"; document.getElementsByTagName("head")[0].appendChild(s);
+		/* ]]> */
+		</script>
+		</div> <!-- end #content-area -->
+		
+		<div id="footer">
+		</div> <!-- end #footer -->
+	</div> <!-- end #container -->
+	
+	
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/superfish.js"></script>	
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/jquery.fancybox-1.2.6.pack.js"></script>
+<script type="text/javascript">
+	jQuery("a[class^='fancybox']").fancybox({
+			'overlayOpacity'	:	0.7,
+			'overlayColor'		:	'#000000',
+			'zoomSpeedIn'		:	500,
+			'zoomSpeedOut'		:	500
+		});
+</script>
+<script type="text/javascript">
+//<![CDATA[
+	jQuery.noConflict();
+
+	jQuery('ul.superfish').superfish({ 
+		delay:       200,                            // one second delay on mouseout 
+		animation:   {'marginLeft':'0px',opacity:'show'},  // fade-in and slide-down animation 
+		speed:       'fast',                          // faster animation speed
+		onBeforeShow: function(){ this.css('marginLeft','20px'); }, 			
+		autoArrows:  true,                           // disable generation of arrow mark-up 
+		dropShadows: false                            // disable drop shadows 
+	}).find('> li > ul').prepend('<span class="top-arrow"></span>');
+	
+	var pagemenuwidth = jQuery("ul.nav").width();
+	var pagemleft = Math.round((804 - pagemenuwidth) / 2) + 55;
+	if (pagemenuwidth < 804) jQuery("ul.nav").css('padding-left',pagemleft);
+	
+	jQuery('ul.superfish ul a').hover(function(){
+		jQuery(this).parent('li').stop().animate({paddingLeft:'27px'},300);
+	},function(){
+		jQuery(this).parent('li').stop().animate({paddingLeft:'17px'},300);
+	});
+	
+	et_search_bar();
+	
+	jQuery('#sidebar ul li a').hover(function(){
+		jQuery(this).stop().animate({paddingLeft:'38px',backgroundPosition:'21px 14px'},300);
+	},function(){
+		jQuery(this).stop().animate({paddingLeft:'26px',backgroundPosition:'11px 14px'},300);
+	});
+	
+	jQuery('.share a.arrow').click(function(){
+		if (jQuery.browser.msie) 
+			jQuery(this).siblings('.buttons').animate({	opacity: 'toggle' }, 0, function() {
+				var sharebox = jQuery(this).parent('.share-box');
+				if (sharebox.hasClass('open')) sharebox.removeClass('open')
+				else sharebox.addClass('open');
+			});
+		else 
+			jQuery(this).siblings('.buttons').animate({	height: 'toggle' }, 700, function() {
+				var sharebox = jQuery(this).parent('.share-box');
+				if (sharebox.hasClass('open')) sharebox.removeClass('open')
+				else sharebox.addClass('open');
+			});
+
+		return false;
+	});
+	
+	jQuery('.share .buttons a').hover(function(){
+		jQuery(this).find('.tooltip').animate({	opacity: 'show', left: '39px' }, 300);
+	},function(){
+		jQuery(this).find('.tooltip').animate({	opacity: 'hide', left: '49px' }, 300);
+	});
+	
+	
+	<!---- Search Bar Improvements ---->
+	function et_search_bar(){
+		var $searchform = jQuery('#searchform1'),
+			$searchinput = $searchform.find("input#searchinput"),
+			searchvalue = $searchinput.val();
+			
+		$searchinput.focus(function(){
+			if (jQuery(this).val() === searchvalue) jQuery(this).val("");
+		}).blur(function(){
+			if (jQuery(this).val() === "") jQuery(this).val(searchvalue);
+		});
+	};
+
+		
+			Cufon.now();
+		
+//]]>	
+</script>	<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/swfaddress.js"></script>
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	
+	<!---- et_switcher plugin v2 ---->
+	(function($)
+	{
+		$.fn.et_shortcodes_switcher = function(options)
+		{
+			var defaults =
+			{
+			   slides: '>div',
+			   activeClass: 'active',
+			   linksNav: '',
+			   findParent: true, //use parent elements to define active states
+			   lengthElement: 'li', //parent element, used only if findParent is set to true
+			   useArrows: false,
+			   arrowLeft: 'a#prev-arrow',
+			   arrowRight: 'a#next-arrow',
+			   auto: false,
+			   autoSpeed: 5000,
+			   slidePadding: '',
+			   pauseOnHover: true,
+			   fx: 'fade',
+			   sliderType: ''
+			};
+
+			var options = $.extend(defaults, options);
+
+			return this.each(function()
+			{
+								
+				var slidesContainer = jQuery(this).parent().css('position','relative'),
+					$slides = jQuery(this).css({'overflow':'hidden','position':'relative'}),
+					$slide = $slides.find(options.slides).css({'opacity':'1','position':'absolute','top':'0px','left':'0px','display':'none'}),
+					slidesNum = $slide.length,
+					zIndex = slidesNum,
+					currentPosition = 1,
+					slideHeight = 0,
+					$activeSlide,
+					$nextSlide;
+				
+				if (options.fx === 'slide') {
+					$slide.css({'opacity':'0','position':'absolute','top':'0px','left':'0px','display':'block'});
+				} else {
+					$slide.filter(':first').css({'display':'block'});
+				}
+				
+				if (options.slidePadding != '') $slide.css('padding',options.slidePadding);
+				
+				$slide.each(function(){
+					jQuery(this).css('z-index',zIndex).addClass('clearfix');
+					if (options.fx === 'slide') zIndex--;
+					
+					slideH = jQuery(this).innerHeight();
+					if (slideH > slideHeight) slideHeight = slideH;
+				});
+				$slides.css('height', slideHeight);
+				$slides.css('width', $slides.width());
+								
+				var slideWidth = $slide.width(),
+					slideOuterWidth = $slide.outerWidth();
+				
+				$slide.css('width',slideWidth);
+				
+				$slide.filter(':first').css('opacity','1');
+				
+				if (options.sliderType != '') {
+					if (options.sliderType === 'images') {
+						controllersHtml = '<div class="controllers-wrapper"><div class="controllers"><a href="#" class="left-arrow">Previous</a>';
+						for ($i=1; $i<=slidesNum; $i++) {
+							controllersHtml += '<a class="switch" href="#">'+$i+'</a>';
+						}
+						controllersHtml += '<a href="#" class="right-arrow">Next</a></div><div class="controllers-right"></div></div>';		
+						$controllersWrap = jQuery(controllersHtml).prependTo($slides.parent());
+					}
+					
+					var etimage_width = $slide.width();
+		
+					slidesContainer.css({'width':etimage_width});
+					$slides.css({'width':etimage_width});
+					
+					if (options.sliderType === 'images') {
+						slidesContainer.css({'height':$slide.height()});
+						$slides.css({'height':$slide.height()});
+						
+						var controllers_width = $controllersWrap.width(),
+						leftPosition = Math.round((etimage_width - controllers_width) / 2);
+					
+						$controllersWrap.css({left: leftPosition});
+					}	
+				}
+				
+				
+				if (options.linksNav != '') {
+					var linkSwitcher = jQuery(options.linksNav);
+					
+					var linkSwitcherTab = '';
+					if (options.findParent) linkSwitcherTab = linkSwitcher.parent();
+					else linkSwitcherTab = linkSwitcher;
+					
+					if (!linkSwitcherTab.filter('.active').length) linkSwitcherTab.filter(':first').addClass('active');
+									
+					linkSwitcher.click(function(){
+						
+						var targetElement;
+
+						if (options.findParent) targetElement = jQuery(this).parent();
+						else targetElement = jQuery(this);
+						
+						var orderNum = targetElement.prevAll(options.lengthElement).length+1;
+						
+						if (orderNum > currentPosition) gotoSlide(orderNum, 1);
+						else gotoSlide(orderNum, -1); 
+						
+						return false;
+					});
+				}
+				
+				
+				if (options.useArrows) {
+					var $right_arrow = jQuery(options.arrowRight),
+						$left_arrow = jQuery(options.arrowLeft);
+										
+					$right_arrow.click(function(){				
+						if (currentPosition === slidesNum) 
+							gotoSlide(1,1);
+						else 
+							gotoSlide(currentPosition+1),1;
+						
+						if (options.linksNav != '') changeTab();
+												
+						return false;
+					});
+					
+					$left_arrow.click(function(){
+						if (currentPosition === 1)
+							gotoSlide(slidesNum,-1);
+						else 
+							gotoSlide(currentPosition-1,-1);
+						
+						if (options.linksNav != '') changeTab();
+						
+						return false;
+					});
+					
+				}
+				
+								
+				function changeTab(){
+					if (linkSwitcherTab != '') { 
+						linkSwitcherTab.siblings().removeClass('active');
+						linkSwitcherTab.filter(':eq('+(currentPosition-1)+')').addClass('active');
+					}
+				}
+				
+				function gotoSlide(slideNumber,dir){
+					if ($slide.filter(':animated').length) return;
+				
+					$slide.css('opacity','0');
+																		
+					$activeSlide = $slide.filter(':eq('+(currentPosition-1)+')').css('opacity','1');
+									
+					if (currentPosition === slideNumber) return;
+									
+					$nextSlide = $slide.filter(':eq('+(slideNumber-1)+')').css('opacity','1');
+									
+					if ((currentPosition > slideNumber || currentPosition === 1) && (dir === -1)) {
+						if (options.fx === 'slide') slideBack(500);
+						if (options.fx === 'fade') slideFade(500);
+					} else {
+						if (options.fx === 'slide') slideForward(500);
+						if (options.fx === 'fade') slideFade(500);
+					}
+					
+					currentPosition = $nextSlide.prevAll().length + 1;
+					
+					if (options.linksNav != '') changeTab();
+					
+					if (typeof interval != 'undefined' && options.auto) {
+						clearInterval(interval);
+						auto_rotate();
+					}
+										
+					return false;
+				}
+				
+				
+				if (options.auto) {
+					auto_rotate();
+					var pauseSlider = false;
+				}
+				
+				if (options.pauseOnHover) { 				
+					slidesContainer.hover(function(){
+						pauseSlider = true;
+					},function(){
+						pauseSlider = false;
+					});
+				}
+				
+				function auto_rotate(){
+					
+					interval = setInterval(function(){
+						if (!pauseSlider) { 
+							if (currentPosition === slidesNum) 
+								gotoSlide(1,1);
+							else 
+								gotoSlide(currentPosition+1),1;
+							
+							if (options.linksNav != '') changeTab();
+						}
+					},options.autoSpeed);
+					
+				}
+				
+				function slideForward(speed){
+					$nextSlide.css('left',slideOuterWidth+'px');
+					$activeSlide.animate({left: '-'+slideOuterWidth},speed);
+					$nextSlide.animate({left: 0},speed);
+				}
+				
+				function slideBack(speed){
+					$nextSlide.css('left','-'+slideOuterWidth+'px');
+					$activeSlide.animate({left: slideOuterWidth},speed);
+					$nextSlide.animate({left: 0},speed);
+				}
+				
+				function slideFade(speed){					
+					$activeSlide.css({zIndex: slidesNum}).fadeOut(700);
+					$nextSlide.css({zIndex: (slidesNum+1)}).fadeIn(700);
+				}
+				
+			});
+		} 
+	})(jQuery);
+	<!---- end et_switcher plugin v2 ---->
+	
+	/////// Shortcodes Javascript ///////
+		
+		/// tooltip ///
+		
+		$et_tooltip = jQuery('.et-tooltip');
+		
+		$et_tooltip.hover(function(){
+			jQuery(this).find('.et-tooltip-box').animate({ opacity: 'show', bottom: '25px' }, 300);
+		},function(){
+			jQuery(this).find('.et-tooltip-box').animate({ opacity: 'hide', bottom: '35px' }, 300);
+		})
+		
+		
+		/// learn more ///
+		
+		$et_learn_more = jQuery('.et-learn-more .heading-more');
+		
+		$et_learn_more.click(function(){
+			if ( jQuery(this).hasClass('open') ) 
+				jQuery(this).removeClass('open');
+			else 
+				jQuery(this).addClass('open');
+				
+			jQuery(this).parent('.et-learn-more').find('.learn-more-content').animate({ opacity: 'toggle', height: 'toggle' }, 300);
+		});
+	
+	/* ]]> */
+	</script>
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/shCore.js"></script>
+<script type="text/javascript" src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/shBrushCpp.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://andybrown.me.uk/ws/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://andybrown.me.uk/ws/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = true;
+	SyntaxHighlighter.defaults['tab-size'] = 2;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.defaults['wrap-lines'] = false;
+	SyntaxHighlighter.all();
+</script>
+	
+
+
+<!-- Dynamic page generated in 2.060 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2012-05-09 14:17:04 -->
+<!-- super cache --><div id="fancy_overlay"></div><div id="fancy_loading"><div></div></div><div id="fancy_outer"><div id="fancy_inner"><div id="fancy_close"></div><div id="fancy_bg"><div class="fancy_bg" id="fancy_bg_n"></div><div class="fancy_bg" id="fancy_bg_ne"></div><div class="fancy_bg" id="fancy_bg_e"></div><div class="fancy_bg" id="fancy_bg_se"></div><div class="fancy_bg" id="fancy_bg_s"></div><div class="fancy_bg" id="fancy_bg_sw"></div><div class="fancy_bg" id="fancy_bg_w"></div><div class="fancy_bg" id="fancy_bg_nw"></div></div><a href="javascript:;" id="fancy_left"><span class="fancy_ico" id="fancy_left_ico"></span></a><a href="javascript:;" id="fancy_right"><span class="fancy_ico" id="fancy_right_ico"></span></a><div id="fancy_content"></div></div></div><div id="fancy_title"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="fancy_title" id="fancy_title_left"></td><td class="fancy_title" id="fancy_title_main"><div></div></td><td class="fancy_title" id="fancy_title_right"></td></tr></tbody></table></div><img src="./Reverse engineering the Nokia 2730 QVGA LCD   Andy's Workshop_files/remoteVisit.php" style="display: none; "><div class="idc-loaded" id="IDCommentLoadingDiv" style="display: block; "></div></body><span id="skype_highlighting_settings" display="none" autoextractnumbers="1"></span><object id="skype_plugin_object" location.href="http://andybrown.me.uk/ws/2012/03/06/reverse-engineering-the-nokia-2730-qvga-lcd/" location.hostname="andybrown.me.uk" style="position: absolute; visibility: hidden; left: -100px; top: -100px; " width="0" height="0" type="application/x-vnd.skype.click2call.chrome.5.7.0"></object></html>
