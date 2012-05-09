@@ -1,0 +1,28 @@
+body { background: #262626 url("images/black/bg.png") no-repeat center top; }
+	p#slogan { color:#202121; text-shadow:1px 1px 1px #555555; }
+	ul.nav li { background:url("images/black/menu-link-bg.png") no-repeat scroll right bottom transparent; }
+		ul.nav li a { background:url("images/black/menu-link-bg.png") no-repeat scroll 0 0 transparent; }
+			ul.nav ul { background:url("images/black/dropdown-bg.png") repeat-y scroll 0 0 transparent; border:1px solid #171717; }
+				ul.nav ul li { background:url("images/black/menu-link-separator.png") no-repeat scroll left bottom transparent; }
+					ul.nav ul li a { background:url("images/black/menu-bullet.png") no-repeat scroll left 16px transparent; }
+				
+			span.top-arrow { background:url("images/black/top-arrow.png") no-repeat scroll 0 0 transparent; }
+			
+	.share .share_button { background:url("images/black/share-top-bg.png") no-repeat scroll 0 0 transparent; }
+	.share a.arrow { background:url("images/black/share-down-button.png") no-repeat scroll 0 0 transparent; }
+	.share .open a.arrow { background:url("images/black/share-up-button.png") no-repeat scroll 0 0 transparent; }
+	.share .buttons { background:url("images/black/share-bg.png") repeat-y scroll 0 0 transparent; }
+		.share .buttons a span.tooltip { border:1px solid #333333; background: rgba(22, 22, 22, 0.7); }
+			.share .buttons a span.tooltip span.left-arrow { background:url("images/black/tooltip-left-arrow.png") no-repeat scroll 0 0 transparent; }
+
+	#sidebar .search { background:url("images/black/search-bg.png") no-repeat scroll 0 0 transparent; }
+		#sidebar .search input#searchinput { color:#373737; }
+		.widget-content { background:url("images/black/widget-bg.png") no-repeat scroll 0 0 transparent; }
+		#sidebar ul li { background:url("images/black/sidebar-separator.png") no-repeat scroll left bottom transparent; }
+			#sidebar ul li a, #sidebar a { color: #696969; }
+			#sidebar ul li a:hover { background-color:#2b2b2b; color:#969696; }
+	
+	.wp-pagenavi span.current, .wp-pagenavi span.extend, .wp-pagenavi a:active, .wp-pagenavi a:hover, .wp-pagenavi a, .wp-pagenavi a:link, .wp-pagenavi a:visited { background: url(images/black/pagenavi-bg.png) no-repeat !important;	}
+	.wp-pagenavi a.nextpostslink, .wp-pagenavi a.previouspostslink, .wp-pagenavi a.first { background: none !important; }
+			
+	#footer, #footer a { color:#121212; text-shadow:1px 1px 1px #373838; }
