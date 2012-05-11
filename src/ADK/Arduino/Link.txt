@@ -1,1 +1,2 @@
 http://developer.android.com/guide/topics/usb/adk.html
+http://arduino.cc/en/Guide/HomePage
