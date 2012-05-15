@@ -1,8 +1,36 @@
 #summary One-sentence summary of this page.
 
-= Introduction =
+= Android USB Accessory Mode =
 
-Add your content here.
+[http://posterous.com/getfile/files.posterous.com/temp-2011-08-03/uIEbmkzaDizhyIrgmxJrFpaJFICyAjargjvmDBtdouxAeoejAalazoinJvCf/android.jpg.scaled1000.jpg]
+
+In the new Android version 2.3.4 (an update to Gingerbread for phones), Google has just added Accessory Mode, which gives the ability to connect to specialty devices they call “accessories” - custom hardware devices, designed to work with specific apps. While researching how to connect custom-built Upverter accessories with Android phones, I started describing the process to myself so I’d remember it - now I figure I should share it with everyone.
+
+So this is a walkthrough of that process to help you understand it a bit more. I’ll go over how the accessory mode process works, so that you can use your own devices which will act as hosts - if you look at the Android ADK and the DemoKit app that comes with it, to control Arduino boards, that’s how they do it. Most of the code here is taken from that app, and the Android docs have a good walkthrough of the process that uses the same code, so check that out for a similar explanation.
+
+= USB Crash Course =
+
+There are two ways to connect a device to an Android phone over USB according to the two device types of the USB spec. Between a USB cable, one device is the host (usually the computer), and one is the device (USB key, camera, Android phone in normal mode, etc.) Wikipedia has a good explanation of the design of it, if you’re curious. Every USB partnership is a hierarchical relationship; the host initiates the connection, the device responds. The messaging system is two-way - the device can send messages to the host, and vice versa - but it’s designed that the host is the one in charge.
+
+Most phones have the ability to connect to a computer as a device, having the computer act as the host. USB devices have multiple “interfaces.” They’re discrete devices within the main device - for example, a webcam might have a microphone and a camera - these are two different parts of the webcam device, and they can operate independently.
+
+Finally, each USB interface has a few “endpoints” which it can send data through. Each endpoint is a different method of sending data - some are optimized for streaming video or audio, some are optimized for sending important commands & interrupts, etc. The Android Docs explain it pretty well - “Typically bulk endpoints are used for sending non-trivial amounts of data. Interrupt endpoints are used for sending small amounts of data, typically events, separately from the main data streams. The endpoint zero is a special endpoint for control messages sent from the host to device.” In a webcam, the camera video stream would have one endpoint, the camera control would have another endpoint, the flash control would have a third...etc.
+
+= Android Crash Course =
+
+If you’re a little rusty, here’s a listing of the basic parts of the Android operating system. Most of these are also the names of the Java classes used - if you run into a class name that you don’t understand, just read it as it is, it’s probably pretty self-explanatory. UsbManager, for example, is an Android class that manages all USB devices and accessories - if you need help with what a certain method does, take a look at the Android docs and use the search to lookup whatever class you want - there’s usually an overview.
+
+*Application/App*: A program for a phone. Applications contain a bunch of different Activities (see below), and Resources (see below, again) in a package that you distribute.
+*Resources*: Non-code parts of your program that are provided by you, the App designer. Things like PNG/SVG/JPEG files to draw, XML files for the layout, a file holding all your strings, etc. Most of these are in XML.
+*Activity*: An Android screen. Your main menu, the main screen of your game, the “view email” or “compose new SMS” screen, these are all Activities. Sometimes, multiple Activities can cover the screen (especially with tablet-compatible apps, which can use the extra space) and sometimes one Activity can look like multiple “screens,” but that’s the concept, in general. Every Activity has three main states, and there are methods you can override to run functions at certain times:
+*Created*, what happens on first run - onCreate() is called. onDestroy() is run on the application closing/quitting.
+*Started*, where it’s open as part of the application, but not focused yet. onStart() and onFinish() are pretty self-explanatory. You can have Activities running as “services” in the background, that never formally run (see next point).
+*Running* (or unpaused, resumed), where it’s in focus. When it’s brought up, onReusme() runs. As soon as the focus goes away to another Activity, onPause() runs.
+*View*: A widget to be displayed. Buttons, text boxes, images, these are all Views. There are a number of standard ones, or you can build your own. ViewGroups are collections of these, they define the whole layout. You can do it in your code, but the preferred method is to separate the structure from the code, defining your layout in XML files. It’s kind of like HTML in that way.
+*Broadcast*: A message Android's internal messaging system. When somebody plugs in headphones, slides out the keyboard, connects to a new network, it broadcasts that to every Application in the phone. Applications that want to do something with it can register BroadcastReceiver objects which hook onto that and fire a method (which you overwrite to do what you want) when they're received asynchronously.
+*Intent*: A command in Android’s internal command system. Activities can start other Activities by creating Intents, passing the class of the Activity to start to it, adding any Extras (information you can pass to an Activity to influence how it starts - offsets and limits for pagination, session IDs, usernames, whatever), then calling startActivity(intent), passing the intent. It’s convoluted for such a simple action, but it’s used for a lot of things, so it needs to be.
+*Manifest*: Every Application has an AndroidManifest.xml which defines the Activities that make it up, ways it can be started, what permissions it needs, and basic metadata (App name, designers, version, etc.)
+A note one API levels: Android 2.3.4 is actually Android 2.3.3, with the extra USB libraries added in. Eclipse, the emulator, and the SDK Manager tool will all tell you you’re using “Android 2.3.3” and API Level 10. To get the new libraries, and make sure you’re using the right API level, you have to install the Google APIs from Google Inc., API level 1, Revision 2. This provides the com.android.future.usb.* libraries, which are for 2.3.4 - Android 3.1 and future versions will use android.hardware.usb.* libraries, API Level 12. It’s kind of confusing, I agree, but that’s how it’s set up. There’s more information on the Google APIs site, as well as the Android Docs for USB Accessories, under “Choosing the Right USB Accessory APIs.”
 
 
 = Details =
