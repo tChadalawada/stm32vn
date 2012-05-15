@@ -3,5 +3,5 @@ https://github.com/YuuichiAkagawa/STM32F4_ADK/wiki
 http://developer.android.com/guide/topics/usb/accessory.html ---> USB accessory document
 http://mbed.org/cookbook/mbed-with-Android-ADK ---> From embed
 http://developer.android.com/guide/topics/usb/accessory.html#manifest ---> more detail about the accessorry
-
 http://developer.android.com/guide/topics/usb/adk.html  ---> The ADK protocol, USB spec from Google
+http://resources.upverter.com/android-usb-accessory-mode ---> USB accessory, easy to understand
