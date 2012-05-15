@@ -400,3 +400,8 @@ public void onPause() {
 }}}
 
 And that’s it! It might be a little hard to put together in your head, but take a look at the DemoKit Activity in the ADK and it should show you a better overview. Many of the commands are across a few Activities, but DemoKitActivity.java is the main one. The sendCommand actions all happen in one of the individual Controller classes (like ColorWheelLEDController.java), so that should get you started. Get hacking!
+
+-----------------------------------
+Reference acticle from :
+
+[http://resources.upverter.com/android-usb-accessory-mode]
