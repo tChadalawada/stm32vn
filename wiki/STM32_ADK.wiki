@@ -50,7 +50,7 @@ A note on errors: I’m not the biggest fan of how Android handles errors, it te
 
 = Receive the “Accessory Connected” Broadcast =
 
-The whole process is going to start when something is plugged in. You’ll need to set your AndroidManifest.xml to state that your app uses the accessory library, with this under the <application> tag:
+The whole process is going to start when something is plugged in. You’ll need to set your AndroidManifest.xml to state that your app uses the accessory library, with this under the "<application>" tag:
 
 {{{
 <uses-library android:name="com.android.future.usb.accessory" />
