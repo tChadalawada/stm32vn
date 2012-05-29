@@ -9,3 +9,5 @@ http://resources.upverter.com/android-usb-accessory-mode ---> USB accessory, eas
 http://y-anz-m.blogspot.com/2011/12/androidhello-adk.html ---> Japanese blog
 
 http://android.serverbox.ch/?p=549 ---> Aduino guide
+
+https://github.com/TitanMKD/EvalBotADK ---> Evalbot
