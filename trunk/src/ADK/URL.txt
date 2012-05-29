@@ -7,3 +7,5 @@ http://developer.android.com/guide/topics/usb/adk.html  ---> The ADK protocol, U
 http://resources.upverter.com/android-usb-accessory-mode ---> USB accessory, easy to understand
 
 http://y-anz-m.blogspot.com/2011/12/androidhello-adk.html ---> Japanese blog
+
+http://android.serverbox.ch/?p=549 ---> Aduino guide
