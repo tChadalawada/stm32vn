@@ -85,6 +85,8 @@ Các thao tác lập trình Flash cho chíp STM32F103RC
 
 Có thể xem tham số của plugin bằng cách lick vào nút Settings
 
+[http://stm32vn.googlecode.com/svn/trunk/image/EASY_STM32/JTAG_SETTING.PNG]
+
 [http://www.arm.vn/Portals/0/CongCu/UJTAG/UJTAG10.JPG]
 
 Ở table debug, chọn Use: Coocox Colink Debugger (xem hình dưới), các thuộc tính khác để mặc định.
