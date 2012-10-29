@@ -112,7 +112,11 @@ Sau khi hoàn tất các bước trên chúng ta có thể download firmware và
 
   [http://stm32vn.googlecode.com/svn/trunk/image/EASY_STM32/IMG_0718.JPG]
 
+---------------------------------------
 
+= NEW MDK PLUGIN =
+
+[http://ujtag.googlecode.com/svn/trunk/ujtag_files/CoMDKPlugin-1.3.2.exe]
 
 
 
