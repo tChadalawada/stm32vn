@@ -88,3 +88,7 @@ So sizeof(a) + sizeof(b) + sizeof(i) = 4 + 2 + 4 = 10
 For your non-packed structure, you processor is aligning to 4-byte boundaries. Thus, a fills one full 4-byte block, b fills two bytes of the next block (leaving 2 other bytes unused), and i occupies the next full 4-byte block. So, in that case:
 
 sizeof(a) + sizeof(b) + sizeof(wasted space) + sizeof(i) = 4 + 2 + 2 + 4 = 12
+
+=Online coding=
+
+ Visit : http://codepad.org/
