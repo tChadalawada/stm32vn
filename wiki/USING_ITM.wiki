@@ -1,0 +1,37 @@
+#summary One-sentence summary of this page.
+
+= Debug (printf) Viewer =
+
+
+ The Debug (printf) Viewer window displays data streams that are transmitted sequentially through the ITM Stimulus Port 0. Enable ITM Stimulus Port 0.
+
+[http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer.png]
+
+To use the viewer for trace output:
+
+  1. Add ITM Stimulus Port register definitions to the source code.
+
+  {{{
+     #define ITM_Port8(n)    (*((volatile unsigned char *)(0xE0000000+4*n)))
+     #define ITM_Port16(n)   (*((volatile unsigned short*)(0xE0000000+4*n)))
+     #define ITM_Port32(n)   (*((volatile unsigned long *)(0xE0000000+4*n)))
+
+     #define DEMCR           (*((volatile unsigned long *)(0xE000EDFC)))
+     #define TRCENA          0x01000000
+  }}}
+
+  2. Add a fputc function which writes to the ITM Stimulus Port 0 register to the source code, which allows using printf for debug output.
+
+  {{{
+     struct __FILE { int handle; /* Add whatever needed */ };
+     FILE __stdout;
+     FILE __stdin;
+
+     int fputc(int ch, FILE *f) {
+       if (DEMCR & TRCENA) {
+         while (ITM_Port32(0) == 0);
+         ITM_Port8(0) = ch;
+       }
+       return(ch);
+     }
+  }}}
