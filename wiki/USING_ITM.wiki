@@ -9,7 +9,7 @@
 
 To use the viewer for trace output:
 
-  1. Add ITM Stimulus Port register definitions to the source code.
+  Add ITM Stimulus Port register definitions to the source code.
 
   {{{
      #define ITM_Port8(n)    (*((volatile unsigned char *)(0xE0000000+4*n)))
@@ -20,7 +20,7 @@ To use the viewer for trace output:
      #define TRCENA          0x01000000
   }}}
 
- 2. Add a fputc function which writes to the ITM Stimulus Port 0 register to the source code, which allows using printf for debug output.
+ Add a fputc function which writes to the ITM Stimulus Port 0 register to the source code, which allows using printf for debug output.
 
   {{{
      struct __FILE { int handle; /* Add whatever needed */ };
