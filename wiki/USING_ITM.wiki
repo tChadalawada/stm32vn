@@ -35,3 +35,21 @@ To use the viewer for trace output:
        return(ch);
      }
   }}}
+
+ Add the debug trace messages.
+
+  {{{
+     printf("AD value = 0x%04X\r\n", AD_value);
+  }}}
+
+ Set ITM Stimulus Port Port 0 bit to allow Trace to capture the ITM Port 0 information. Clear the Port 7..0 privilege bit to allow access to the Port 0 bit from User mode.
+
+ [http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer_port0_0.png]
+
+ Select View - Serial Windows - Debug (printf) Viewer to launch the window.
+
+ [http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer_select.png]
+
+ == Note ==
+
+ Only data transmitted over ITM Stimulus port 0 is displayed in the Debug (printf) Viewer window. Other ITM Ports can be monitored with the Trace Records Window. 
