@@ -52,4 +52,10 @@ To use the viewer for trace output:
 
  == Note ==
 
- Only data transmitted over ITM Stimulus port 0 is displayed in the Debug (printf) Viewer window. Other ITM Ports can be monitored with the Trace Records Window. 
+ Only data transmitted over ITM Stimulus port 0 is displayed in the Debug (printf) Viewer window. Other ITM Ports can be monitored with the Trace Records Window.
+
+-------------------------------------------------------
+== Reference link ==
+
+[http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer.htm]
+ 
