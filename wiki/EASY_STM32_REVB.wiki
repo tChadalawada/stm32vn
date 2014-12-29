@@ -1,12 +1,12 @@
 #summary One-sentence summary of this page.
 
-= GIỚI THIỆU  =
+= 1> GIỚI THIỆU  =
 
   Ở phiên bản B, EASY_STM32 được thu gọn với PCB có kích thước nhỏ hơn (có thể cắm lên breadboard được). Adapter on board debugger được chuyển từ OpenOCD FT3232 sang STLinkV2 hoặc CMSIS-DAP (tùy vào cấu hình firmware cho chip debugger). Ngoài ra, phiên bản mới được thêm vào kết nối Ethernet thích hợp cho một số project điều khiển từ xa thông qua mạng LAN, internet.
 
 [http://stm32vn.googlecode.com/svn/trunk/image/PCB_02.png]
 
-= TÍNH NĂNG =
+= 2> TÍNH NĂNG =
 
 ==Các tính năng==
 
@@ -22,3 +22,10 @@
     * User LED.
     * User button.
     * Extension GPIO pin header.
+
+= 3> SƠ ĐỒ MẠCH ĐIỆN =
+
+ [http://stm32vn.googlecode.com/svn/trunk/hardware/EASY_STM32/hardware/schematic/EASY_STM32_REVB_SCH.pdf EASY_STM32_REVB_SCH.pdf]
+
+
+   
