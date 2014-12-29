@@ -35,7 +35,7 @@
 
  [http://stm32vn.googlecode.com/svn/trunk/hardware/EASY_STM32/hardware/schematic/EASY_STM32_REVB_ASM.rar Hướng dẫn lắp ráp link kiện]
   
-  Note: Firmware của STLinkV2 được nén thành file .rar và có password, dùng mật khẩu stlinkv2 để giải nén, ta được file firmware xxxx.bin
+  Note: Firmware của STLinkV2 được nén thành file .rar và có password, dùng mật khẩu ==stlinkv2== để giải nén, ta được file firmware xxxx.bin
 
 = 5> LOAD FIRMWARE CHO DEBUGGER =
 
