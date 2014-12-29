@@ -41,7 +41,13 @@
 
   Onboard debugger bao gồm adaper STLinkV2 (phiên bản clone) sử dụng chíp STM32F103C8T6 (U5), trên PCB có dành sẵn 1 connector SWD (J5) dùng để load firmware vào chíp này. Sử dụng debugger bất kỳ STLink hoặc Jlink để nạp file xxxx.bin vào U5. Sau khi nạp xong, chúng ta cần phải update firmware (thông qua kết nối USB với PC, tham khảo tài liệu hướng dẫn STM32 ST-LINK Utility để biết thêm chi tiết).
 
+= 6> CÁC CHƯƠNG TRÌNH DEMO =
 
+[http://armtutorial.googlecode.com/svn/trunk/src/EASY_STM32_ITM.rar EASY_STM32_ITM.rar]
+
+[http://armtutorial.googlecode.com/svn/trunk/src/EASY_STM32_RTX.rar EASY_STM32_RTX.rar]
+
+[LWIP_DEMO COMMING SOON]
     
 
     
