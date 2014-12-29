@@ -29,5 +29,9 @@
 
  Note : Click chuột phải --> save link as... 
 
+= 3> LẮP RÁP LINH KIỆN =
 
+  Chi tiết về danh sách linh kiện, cách lắp ráp có thể download ở link sau: 
+
+ [http://stm32vn.googlecode.com/svn/trunk/hardware/EASY_STM32/hardware/schematic/EASY_STM32_REVB_ASM.rar Hướng dẫn lắp ráp link kiện]
    
