@@ -27,5 +27,7 @@
 
  [http://stm32vn.googlecode.com/svn/trunk/hardware/EASY_STM32/hardware/schematic/EASY_STM32_REVB_SCH.pdf EASY_STM32_REVB_SCH.pdf]
 
+ Note : Click chuột phải --> save link as... 
+
 
    
