@@ -51,6 +51,7 @@
 
  [http://stm32vn.googlecode.com/svn/trunk/Image/SMD3225_XTAL_02.png]
  
+ Đặt XTAL 8MHz SMD3225 vào vị trí outline màu vàng, dùng máy khò thổi nhẹ ta có thể gắn thạch anh vào PCB một cách dễ dàng. Sau khi làm xong nên dùng đồng hồ VOM kiểm tra để đảm bảo OSC_IN và OSC_OUT không bị chạm với GND là được. 
 
 = 6> LOAD FIRMWARE CHO DEBUGGER =
 
