@@ -37,16 +37,18 @@
   
   Note: Firmware của STLinkV2 được nén thành file .rar và có password, dùng mật khẩu : stlinkv2 để giải nén, ta được file firmware xxxx.bin
 
+= 5> CÁCH RÁP THẠCH ANH Y2 =
 
- == CÁCH RÁP THẠCH ANH Y2 ==
+  Đối với thạch anh cho chip debugger, ta sử dụng loại có tần số 8MHz, trên PCB sử dụng footprint SMD2520, không may, người ta không sản xuất XTAL 8MHz với kích thước SMD2520 mà chỉ có SMD3225 trở lên. Tuy vậy, PCB vẫn còn khoảng trống cho thạch anh 8MHz SMD3225, cách làm như sau:
+
+ [http://stm32vn.googlecode.com/svn/trunk/image/XTAL_02.png]   
 
 
-
-= 5> LOAD FIRMWARE CHO DEBUGGER =
+= 6> LOAD FIRMWARE CHO DEBUGGER =
 
   Onboard debugger bao gồm adaper STLinkV2 (phiên bản clone) sử dụng chíp STM32F103C8T6 (U5), trên PCB có dành sẵn 1 connector SWD (J5) dùng để load firmware vào chíp này. Sử dụng debugger bất kỳ STLink hoặc Jlink để nạp file xxxx.bin vào U5. Sau khi nạp xong, chúng ta cần phải update firmware (thông qua kết nối USB với PC, tham khảo tài liệu hướng dẫn STM32 ST-LINK Utility để biết thêm chi tiết).
 
-= 6> CÁC CHƯƠNG TRÌNH DEMO =
+= 7> CÁC CHƯƠNG TRÌNH DEMO =
 
   [http://armtutorial.googlecode.com/svn/trunk/src/EASY_STM32_ITM.rar EASY_STM32_ITM.rar]
 
