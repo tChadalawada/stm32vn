@@ -2,7 +2,7 @@
 
 = 1> GIỚI THIỆU  =
 
-  So với phiên bản A, EASY_STM32_REVB được thu gọn với PCB có kích thước nhỏ hơn (có thể cắm lên breadboard được). Adapter on board debugger được chuyển từ OpenOCD FT3232 sang STLinkV2 hoặc CMSIS-DAP (tùy vào cấu hình firmware cho chip debugger). Ngoài ra, phiên bản mới được thêm vào kết nối Ethernet thích hợp cho một số project điều khiển từ xa thông qua mạng LAN, internet.
+  So với phiên bản A, EASY_STM32_REVB được thu gọn với kích thước PCB nhỏ hơn (có thể cắm lên breadboard). Adapter on board debugger được chuyển từ OpenOCD FT3232 sang STLinkV2 hoặc CMSIS-DAP (tùy vào cấu hình firmware cho chip debugger). Ngoài ra, phiên bản mới được thêm vào kết nối Ethernet thích hợp cho một số project điều khiển từ xa thông qua mạng LAN, internet.
 
 [http://stm32vn.googlecode.com/svn/trunk/image/PCB_02.png]
 
