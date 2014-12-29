@@ -47,7 +47,7 @@
 
 [http://armtutorial.googlecode.com/svn/trunk/src/EASY_STM32_RTX.rar EASY_STM32_RTX.rar]
 
-[LWIP_DEMO COMMING SOON]
+LWIP_DEMO (COMMING SOON)
     
 
     
