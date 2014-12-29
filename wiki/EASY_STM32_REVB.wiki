@@ -43,6 +43,14 @@
 
  [http://stm32vn.googlecode.com/svn/trunk/image/XTAL_02.png]   
 
+ Đường viền chữ nhật màu trắng biểu thị kích thước và vị trí của loại SMD2520, đường viền màu vàng biểu thị kích thước và vị trí khi ta gắn loại SMD3225 vào.
+
+ Trước khi hàn, ta dùng mỏ hàn thêm 1 chút chì vào 2 pad OSC_IN và OSC_OUT ( 2 hình chữ nhật màu xanh da trời), 2 pad GND còn lại ta không cần thêm chì vào, thực tế nếu ta không hàn hai pad này với XTAL (chân 2 & 4) thì mạch vẫn hoạt động bình thường.
+
+ Tương tự đối với XTAL 8MHz SMD3225, ta thêm 1 chút chì hàn vào pad 1 & 3 (xem hình)
+
+ [http://stm32vn.googlecode.com/svn/trunk/Image/SMD3225_XTAL_02.png]
+ 
 
 = 6> LOAD FIRMWARE CHO DEBUGGER =
 
