@@ -8,13 +8,13 @@
 
 = 2> TÍNH NĂNG =
 
-==Các tính năng==
+  ==Các tính năng==
 
     * Hỗ trợ các dòng STM32 F1, F2 & F4.
     * Hỗ trợ package LQFP48 và LQFP64.
     * On board debugger : SWD, Power Supply (via USB cable).
 
-==Ngoại vi==
+  ==Ngoại vi==
 
     * Onboard SWD Interface.
     * Power Supply (external or via USB cable). 
