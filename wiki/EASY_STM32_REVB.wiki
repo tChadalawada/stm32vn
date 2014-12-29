@@ -4,4 +4,4 @@
 
   Ở phiên bản B, EASY_STM32 được thu gọn với PCB có kích thước nhỏ hơn (có thể cắm lên breadboard được). Adapter on board debugger được chuyển từ OpenOCD FT3232 sang STLinkV2 hoặc CMSIS-DAP (tùy vào cấu hình firmware cho chip debugger). Ngoài ra, phiên bản mới được thêm vào kết nối Ethernet thích hợp cho một số project điều khiển từ xa thông qua mạng LAN, internet.
 
-[https://code.google.com/p/stm32vn/source/browse/trunk/image/PCB_02.png]
+[http://stm32vn.googlecode.com/svn/trunk/image/PCB_02.png]
