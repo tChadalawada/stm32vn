@@ -8,7 +8,20 @@
 
   ITM (Instrumentation Trace Macrocell Unit) là gì ? ITM là ứng dụng cho phép gửi các trace packages debug hệ thống thông qua các thanh gi (ITM stimulus registers), các package này được debugger thu thập lại và gửi lên máy tính. Ví dụ tool Keil sử dụng Serial Wire Viewer (SWV) để hiển thị thông tin ra màn hình. Chương trình trên vi xử lý có thể xuất message thông qua hàm printf, lớp dưới của printf sẽ gọi đến các hàm xuất nhập chuẩn fputc(). Chúng ta thường sửa lại những hàm này để có thể hiển thị ra hyper terminal, hoặc LCD 16x2...Thao tác này được gọi là Retarget. Đối với ITM hoàn toàn có thể làm tương tự, các thông tin debug sẽ được hiển thị trên màn hình SWV trong Keil IDE.
 
-= Debug (printf) Viewer =
+  Phần sau đây hướng dẫn cách retarget cho ITM, test thử trên board EASY_STM32. 
+
+= RETARGET =
+
+  Các thanh ghi ITM stimulus được mô tả trong các tài liệu core ARM cortex-M, việc truy xuất các thanh ghi này được khai báo bởi các macro như sau:
+
+  {{{
+     #define ITM_Port8(n)    (*((volatile unsigned char *)(0xE0000000+4*n)))
+     #define ITM_Port16(n)   (*((volatile unsigned short*)(0xE0000000+4*n)))
+     #define ITM_Port32(n)   (*((volatile unsigned long *)(0xE0000000+4*n)))
+
+     #define DEMCR           (*((volatile unsigned long *)(0xE000EDFC)))
+     #define TRCENA          0x01000000
+  }}}
 
 
  The Debug (printf) Viewer window displays data streams that are transmitted sequentially through the ITM Stimulus Port 0. Enable ITM Stimulus Port 0.
