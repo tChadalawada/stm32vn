@@ -2,7 +2,7 @@
 
 = GIỚI THIỆU =
 
-
+  [https://stm32vn.googlecode.com/svn/trunk/Image/EASY_STM32_REVB.JPG]
 
 
 
