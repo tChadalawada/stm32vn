@@ -4,6 +4,9 @@
 
   [https://stm32vn.googlecode.com/svn/trunk/Image/EASY_STM32_REVB.JPG]
 
+  EASY_STM32 bao gồm module STlinkV2 tích hợp trên board, với 1 cổng USB device, có thể dùng để cấp nguồn cho board đồng thời gửi message debug lên máy tính. Có nghĩa ta không cần phải dùng kết nối UART cho hàm printf.
+
+    
 
 
 = Debug (printf) Viewer =
