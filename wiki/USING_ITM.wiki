@@ -23,6 +23,10 @@
      #define TRCENA          0x01000000
   }}}
 
+= DEBUGGER SETTING =
+
+  Trước khi sử dụng SWV, ta cần enable trace cho STlinkV2, thực hiện bằng cách chọn mục cấu hình debugger --> setting --> enable trace.  
+
 
  The Debug (printf) Viewer window displays data streams that are transmitted sequentially through the ITM Stimulus Port 0. Enable ITM Stimulus Port 0.
 
