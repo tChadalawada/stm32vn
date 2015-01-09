@@ -65,5 +65,8 @@
 
   [http://armtutorial.googlecode.com/svn/trunk/src/EASY_STM32_LWIP_FreeRTOS.rar EASY_STM32_LWIP_FreeRTOS.rar]
     
+= 8> HÌNH ẢNH BOARD HOÀN CHỈNH =
+
+[https://stm32vn.googlecode.com/svn/trunk/Image/EASY_STM32_REVB.JPG]
 
     
