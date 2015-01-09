@@ -28,7 +28,17 @@
   Trước khi sử dụng SWV, ta cần enable trace cho STlinkV2, thực hiện bằng cách chọn mục cấu hình debugger --> setting --> enable trace.  
 
   Kế đến ta tick select vào ITM Port 0 theo hình sau :
-  [http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer_port0_0.png]
+  
+
+[http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer_port0_0.png]
+
+= SỬ DỤNG SERIAL WIRE VIER =
+
+  Ở menu, chọn "View" --> "Serial Windows" --> "Debug (printf) Viewer"   
+
+
+ Select View - Serial Windows - Debug (printf) Viewer to launch the window.
+
 
  The Debug (printf) Viewer window displays data streams that are transmitted sequentially through the ITM Stimulus Port 0. Enable ITM Stimulus Port 0.
 
