@@ -42,6 +42,8 @@
 
  The Debug (printf) Viewer window displays data streams that are transmitted sequentially through the ITM Stimulus Port 0. Enable ITM Stimulus Port 0.
 
+[http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer_select.png]
+
 [http://www.keil.com/support/man/docs/ulink2/ulink2_trace_itm_viewer.png]
 
 To use the viewer for trace output:
