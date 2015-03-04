@@ -35,6 +35,7 @@
 		};
 
 		KERNEL_TYPE = ECC2;
+
                 /* Pre-AUTOSAR Conformance StartOS()  */
     	        EE_OPT = "__OO_STARTOS_OLD__";	
     		
