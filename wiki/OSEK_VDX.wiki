@@ -24,7 +24,8 @@
 		   //COMPILER_TYPE = GNU;
 		   MULTI_STACK = TRUE { 
                       IRQ_STACK = TRUE { 
-                         SYS_SIZE = 2048; };                        
+                         SYS_SIZE = 2048; 
+                      };                        
                    };
 		};
 		
