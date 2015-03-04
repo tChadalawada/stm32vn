@@ -133,4 +133,6 @@
      }
   }}}
 
+= Debug with KEIL IDE =
+
   [http://stm32vn.googlecode.com/svn/trunk/Image/OSEK_VDX_DEMO.png]
