@@ -97,3 +97,38 @@
         };
 
   }}}
+
+= Task Function =
+
+  {{{
+
+     /*
+      * Task1 
+      */
+     TASK(Task1)
+     {
+        EventMaskType mask;
+  
+	static int t = 0;
+	
+        while (1)
+        {
+	   WaitEvent(Evt_Alarm);
+	   GetEvent(Task1, &mask);
+
+	   if (mask & Evt_Alarm)
+	   {
+	      ClearEvent(Evt_Alarm);
+			
+	      printf("Task1 - Alarm ");
+			
+	      if (t == 0) printf("|");
+	      if (t == 1) printf("/");
+	      if (t == 2) printf("-");			
+	      if (t == 3) printf("\\");				
+	      (t == 3) ? t = 0 : t++;
+	      printf("\r");
+	   }  
+        }
+     }
+  }}}
